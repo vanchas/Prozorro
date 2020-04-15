@@ -1,0 +1,76 @@
+.about-header {
+	max-width: 1200px;
+	margin: 0 auto;
+
+	.bkg-info {
+		background: #02bfdd;
+	}
+	.txt-info {
+		color: #02bfdd;
+	}
+}
+.about-header-description-top {
+	border-top-left-radius: 2em;
+}
+.big-num {
+	font-size: 3em;
+	line-height: 1.1em;
+}
+.robot-holder {
+	transform: translateX(-50%);
+	position: absolute;
+	max-width: 1200px;
+	left: 50%;
+	z-index: 1;
+	height: 110%;
+	img {
+		height: 100%;
+	}
+}
+// .header-description {
+// }
+.tender-form {
+	background-color: #e2f3f7;
+	z-index: 9;
+	height: 99%;
+}
+.header-text-item {
+	font-size: .8em;
+}
+
+@media (max-width: 1023px) {
+	.about-header {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.robot-holder {
+		display: none;
+	}
+}
+
+
+@media (max-width: 768px) {
+	.about-header-description-top {
+		border-top-left-radius: 0;
+	}
+	.d-lg-inline-block {
+    display: none;
+  }
+  .header-description {
+    padding: 0;
+    margin: 0 auto;
+  }
+  .info-header-block {
+    padding: 0;
+  }
+  .big-num-item {
+    text-align: center;
+  }
+  .about-header-description-top-inner {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    padding: 0 0 0 2em;
+  }
+}
+

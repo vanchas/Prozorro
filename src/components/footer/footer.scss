@@ -1,0 +1,18 @@
+.footer {
+
+  .secure {
+    float: right;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+
+    .row {
+      text-align: center;
+    }
+    .secure {
+      float: none;
+    }
+  }
+}

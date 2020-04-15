@@ -1,0 +1,133 @@
+.bkg-light-info {
+	background: #e2f3f7;
+}
+.modal-form {
+	label {
+		display: grid;
+	}
+}
+
+.posibilities-block {
+	max-width: 1200px;
+	margin: 0 auto;
+
+	h2 {
+		font-size: 2.2em;
+	}
+	.txt-info {
+		color: #02bfdd;
+	}
+
+	.cards-holder {
+		.card-holder {
+			.card {
+				height: 20em;
+				display: grid;
+				position: relative;
+				&::after {
+					content: '';
+					bottom: 0;
+					position: absolute;
+					width: 100%;
+					height: 1em;
+					background-image: url('./image/border-bottom.png');
+					transform: translateY(100%);
+				}
+			}
+		}
+	}
+	.bkg-info {
+		background: #02bfdd;
+		font-size: 1.1em;
+		padding: .5em 4em;
+	}
+}
+
+@media (max-width: 768px) {
+	.posibilities-block {
+		h2 {
+			font-size: 2em;
+		}
+	}
+}
+
+
+/* Customize the label (the container) */
+.label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+	user-select: none;
+	.ml-5 {
+		font-weight: 500;
+	}
+}
+
+/* Hide the browser's default checkbox */
+.label .form-check-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+	width: 0;
+	transition: .3;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.5em;
+  width: 1.5em;
+	background: none;
+	border: 2px solid #2c2c2c;
+	border-radius: 3px;
+	transition: .3;
+	margin-left: 0;
+}
+
+/* On mouse-over, add a grey background color */
+.label:hover .form-check-input ~ .checkmark {
+	transition: .3;
+  background: #66dff1;
+}
+
+/* When the checkbox is checked, add a blue background */
+.label .form-check-input:checked ~ .checkmark {
+	transition: .3;
+  background-color: #02bfdd;
+}
+
+.label .form-check-input:checked ~ .ml-5 {
+	transition: .3;
+	font-weight: 900;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.label .form-check-input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.label .checkmark:after {
+  left: 9px;
+  top: 0px;
+  width: 10px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

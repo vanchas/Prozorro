@@ -1,0 +1,23 @@
+.header-logo-prozorro {
+  height: 3em;
+}
+.info-navbar-list {
+  .nav-item {
+    border-bottom: 1px solid #fff;
+    font-family: 400;
+    cursor: pointer;
+    &:hover {
+      transition: .3s;
+      border-bottom: 1px solid #17a2b8;
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .info-navbar-list {
+    .nav-item {
+      text-align: center;
+    }
+  }
+}
