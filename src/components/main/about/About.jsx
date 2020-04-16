@@ -15,14 +15,14 @@ export default class About extends Component {
     return (
       <div className="position-relative">
 
-        <div className="robot-holder w-100">
-          <img className="w-100" src={BigRob} alt="bot" />
+        <div className="robot-holder">
+          <img className="" src={BigRob} alt="bot" />
         </div>
 
         <header className="w-100 row m-0 p-0 about-header mx-auto">
           <div className="header-description row col-lg-8 col-md-12 mt-1 pl-0 pr-lg-3 pr-md-0 mx-md-auto">
-            <div className="col-lg-3 col-md-0"></div>
-            <div className="info-header-block col-lg-9 col-md-12 pr-lg-1 pr-md-0">
+            <div className="col-lg-2 col-md-0"></div>
+            <div className="info-header-block col-lg-10 col-md-12 pr-lg-1 pr-md-0">
               <div className="bkg-info text-white text-center about-header-description-top">
                 <h1 className="m-0 h2">Я ТЕНДЕРБОТ</h1>
                 <p className="h6 pl-lg-5 pl-md-0 pb-2">УНИКАЛЬНАЯ КОМПЬЮТЕРНАЯ ПРОГРАММА</p>
@@ -30,7 +30,7 @@ export default class About extends Component {
               <div className="about-header-description-top-inner font-weight-bolder pb-2">
                 <div className="row w-100">
                   <div className="col-lg-4 col-md-0 p-0"></div>
-                  <div className="col-lg-8 col-md-12 p-0 d-flex">
+                  <div className="col-lg-8 col-md-12 pl-1 pr-0 d-flex">
                     <img height={35} src={MolotSign} alt="." />
                     <p className="pl-2 m-0 header-text-item">ОБРАБОТАЮ ТЕНДЕРНУЮ ДОКУМЕНТАЦИЮ</p>
                   </div>

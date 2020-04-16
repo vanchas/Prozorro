@@ -19,16 +19,36 @@
 .robot-holder {
 	transform: translateX(-50%);
 	position: absolute;
-	max-width: 1200px;
+	// max-width: 1200px;
 	left: 50%;
 	z-index: 1;
+	// height: 26.3em;
+	// background-color: rgba(255, 0, 0, 0.281);
 	height: 110%;
 	img {
 		height: 100%;
 	}
+	&::before {
+		content: '';
+		width: 50em;
+		height: 7.9%;
+		// background-color: red;
+		background: linear-gradient(90deg, #adbdc9, #cbd8e1);
+		position: absolute;
+		left: -46.5em;
+		bottom: 0;
+	}
+	&::after {
+		content: '';
+		width: 50em;
+		height: 7.9%;
+		background: linear-gradient(90deg, #e7ecf2, #ccd9e2);
+		position: absolute;
+		right: -46.5em;
+		bottom: 0;
+	}
 }
-// .header-description {
-// }
+
 .tender-form {
 	background-color: #e2f3f7;
 	z-index: 9;
