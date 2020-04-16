@@ -29,7 +29,7 @@ export default class Features extends Component {
               <div className="bkg-info py-2">
                 <div className="px-1 h-100 py-2">
                   <b className="txt-info">01.</b>
-                  <p className="px-2">Вы отправляется ссылку на тендер</p>
+                  <p className="px-2">Вы отправляетe ссылку на тендер</p>
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@ export default class Features extends Component {
                   <b className="txt-info">04.</b>
                   <p className="px-2">После проверки
                   Вы получаете
-                  это список
+                  этот список
                 документов на email</p>
                 </div>
               </div>

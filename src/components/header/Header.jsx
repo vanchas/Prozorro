@@ -10,56 +10,58 @@ const HeaderHeadingStyles = {
 export default class Header extends Component {
   constructor(props) {
     super(props);
-    this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.classListToggle = this.classListToggle.bind(this);
   }
 
-  toggleNavbar() {
-    $('.navbar-collapse').toggleClass('show');
+  openNav() {
+    $('.mobilBar').toggleClass("openNav");
+    $('#nav').toggleClass('showNav');
+  }
+
+  classListToggle() {
+    this.openNav();
+    $('.mobilBar').toggleClass('active');
+  }
+
+  onNavItemClick(item) {
+    this.props.scrollToElement(item);
+    this.classListToggle();
   }
 
   render() {
-    $(document).on('click', e => {
-      if (!$(e.target).hasClass('navbar-toggler-icon')) {
-        $('.navbar-collapse').removeClass('show');
-      }
-    });
-
     return (
       <header>
-        <nav className="flex flex-column navbar navbar-expand-lg navbar-light p-0">
+        <div className="flex flex-column navbar navbar-expand-lg navbar-light p-0">
           <h2 style={HeaderHeadingStyles} className="w-100 py-2">
-            <button className="btn p-0 m-0 w-100 navbar-brand d-flex justify-content-center justify-items-center align-content-center align-items-center">
+            <div className="p-0 m-0 w-100 navbar-brand d-flex align-content-center align-items-center">
               <span className="d-lg-inline-block d-md-none d-sm-none h1 font-weight-bold text-info pr-3"> ТЕНДЕР В</span>
               <img className="header-logo-prozorro" src={HeaderLogo} alt="PROZORRO" />
               <span className="d-lg-inline-block d-md-none d-sm-none h1 font-weight-bold text-info pl-3"> - ЭТО ПРОСТО!</span>
-            </button>
+            </div>
           </h2>
-          <button type="button"
-            onClick={this.toggleNavbar}
-            className="navbar-toggler"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse w-100" id="navbarSupportedContent">
-            <ul className="info-navbar-list navbar-nav border-bottom border-light mx-auto my-2">
-              <li className="nav-item px-3">
-                <span
-                  onClick={() => { this.props.scrollToElement('about'); }}
-                >Как это работает</span>
+        </div>
+        <nav>
+          <div>
+            <svg className="ham hamRotate ham1 mobilBar" viewBox="0 0 100 100" width={80} onClick={this.classListToggle}>
+              <path className="line top" d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+              <path className="line middle" d="m 30,50 h 40" />
+              <path className="line bottom" d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+            </svg>
+            <ul id="nav" className="">
+              <li>
+                <span className="list-item"
+                  onClick={() => { this.onNavItemClick('about') }} >
+                  Как это работает</span>
               </li>
-              <li className="nav-item px-3">
-                <span
-                  onClick={() => { this.props.scrollToElement('features'); }}
-                >Дополнительные возможности</span>
+              <li>
+                <span className="scrollto list-item"
+                  onClick={() => { this.onNavItemClick('features'); }} >
+                  Дополнительные возможности</span>
               </li>
-              <li className="nav-item px-3">
-                <span
-                  onClick={() => { this.props.scrollToElement('contacts'); }}
-                >Контакты</span>
+              <li>
+                <span className="scrollto list-item"
+                  onClick={() => { this.onNavItemClick('contacts'); }} >
+                  Контакты</span>
               </li>
             </ul>
           </div>
