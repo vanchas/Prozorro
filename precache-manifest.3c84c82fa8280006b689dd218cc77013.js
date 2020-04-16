@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "61d3066e93e85d04844701b2f7c22810",
+    "revision": "b8525c92fc48533561a8d644db68b7dc",
     "url": "/Prozorro/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Prozorro/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "b9df656c75d9aea9243a",
-    "url": "/Prozorro/static/css/main.0c8c7170.chunk.css"
+    "revision": "97a76c35df4f17c226f7",
+    "url": "/Prozorro/static/css/main.afa24b8e.chunk.css"
   },
   {
     "revision": "73e176d8a660e0c6703c",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Prozorro/static/js/2.29d424ed.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b9df656c75d9aea9243a",
-    "url": "/Prozorro/static/js/main.abcc90ff.chunk.js"
+    "revision": "97a76c35df4f17c226f7",
+    "url": "/Prozorro/static/js/main.fa825dff.chunk.js"
   },
   {
     "revision": "b04d30fa2d3b47d72762",
