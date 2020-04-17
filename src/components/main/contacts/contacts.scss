@@ -10,8 +10,50 @@
 		color: #02bfdd;
 	}
 	.form-group {
+		.send-btn {
+
+		}
+		.name-input {
+			float: right;
+		}
+		.phone-input {
+			margin: 0 auto;
+		}
+		.form-control {
+			max-width: 15em;
+		}
 		.btn {
 			background: #02bfdd;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.contacts-block {
+		.contacts-block-inner {
+		}
+	
+		.txt-info {
+		}
+		.form-group {
+			.send-btn {
+				margin: 0 auto;
+			}
+			.name-input {
+				float: none;
+				margin: 0 auto;
+				max-width: auto;
+			}
+			.phone-input {
+				margin: 0 auto;
+				max-width: auto;
+			}
+			.form-control {
+				max-width: 15em;
+			}
+			.btn {
+				background: #02bfdd;
+			}
 		}
 	}
 }

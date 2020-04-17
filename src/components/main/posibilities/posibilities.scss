@@ -93,13 +93,13 @@
 /* On mouse-over, add a grey background color */
 .label:hover .form-check-input ~ .checkmark {
 	transition: .3;
-  background: #66dff1;
+  background: none;
 }
 
 /* When the checkbox is checked, add a blue background */
 .label .form-check-input:checked ~ .checkmark {
 	transition: .3;
-  background-color: #02bfdd;
+  background-color: none;
 }
 
 .label .form-check-input:checked ~ .ml-5 {
@@ -125,7 +125,7 @@
   top: 0px;
   width: 10px;
   height: 15px;
-  border: solid white;
+  border: solid #02bfdd;
   border-width: 0 3px 4px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);

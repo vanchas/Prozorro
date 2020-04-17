@@ -12,9 +12,9 @@ export default class Features extends Component {
     return (
       <div className="text-center features-block mt-4 py-5">
         <h2 className="h2 py-2 txt-info font-weight-bold w-75 mx-auto">ПЛАНИРУЕТЕ УЧАСТВОВАТЬ В ТЕНДЕРЕ ИЛИ ГОТОВИТЕ ДОКУМЕНТЫ ДЛЯ ТЕНДЕРА?</h2>
-        <p className="px-3 font-weight-bolder">Одна из главных причин отклонения участников в тендерах это <button className="text-danger btn p-0 m-0 font-weight-bold"><u>НЕПОЛНЫЙ СПИСОК ПОДАННЫХ ДОКУМЕНТОВ</u></button>. Неподача любого документа или справки ведет к отклонению тендерного предложения, а это значит Вы ничего не заработали и зря потратили время, силы и деньги!</p>
-        <p className="px-3 font-weight-bolder">
-          <strong className="w-100 h5 font-weight-bold txt-info">ДЛЯ РЕШЕНИЯ ЭТОЙ ПРОБЛЕМЫ МЫ СОЗДАЛИ ПРОГРАММУ ТЕНДЕРБОТ,</strong><br/>
+        <p className="px-3">Одна из главных причин отклонения участников в тендерах это <button className="text-danger btn p-0 m-0"><u><b>НЕПОЛНЫЙ СПИСОК ПОДАННЫХ ДОКУМЕНТОВ.</b></u></button> Неподача любого документа или справки ведет к отклонению тендерного предложения, а это значит Вы ничего не заработали и зря потратили время, силы и деньги!</p>
+        <p className="px-3">
+          <strong className="w-100 h5 txt-info font-weight-bold">ДЛЯ РЕШЕНИЯ ЭТОЙ ПРОБЛЕМЫ МЫ СОЗДАЛИ ПРОГРАММУ ТЕНДЕРБОТ,</strong><br/>
            на основе искусственного интеллект, которая анализирует тендерную документацию и составляет список необходимых документов и справок для участия в тендере.</p>
 
         <div>
