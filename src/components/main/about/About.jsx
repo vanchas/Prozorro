@@ -36,7 +36,7 @@ export default class About extends Component {
       this.state.email.length &&
       this.state.link.length
     ) {
-      fetch('/php1', {
+      fetch('/1php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'

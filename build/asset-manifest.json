@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Prozorro/static/css/main.f25f55ab.chunk.css",
-    "main.js": "/Prozorro/static/js/main.b5e3057c.chunk.js",
-    "main.js.map": "/Prozorro/static/js/main.b5e3057c.chunk.js.map",
+    "main.js": "/Prozorro/static/js/main.56e29f86.chunk.js",
+    "main.js.map": "/Prozorro/static/js/main.56e29f86.chunk.js.map",
     "runtime-main.js": "/Prozorro/static/js/runtime-main.a206e397.js",
     "runtime-main.js.map": "/Prozorro/static/js/runtime-main.a206e397.js.map",
     "static/css/2.de424728.chunk.css": "/Prozorro/static/css/2.de424728.chunk.css",
     "static/js/2.13de3c0b.chunk.js": "/Prozorro/static/js/2.13de3c0b.chunk.js",
     "static/js/2.13de3c0b.chunk.js.map": "/Prozorro/static/js/2.13de3c0b.chunk.js.map",
     "index.html": "/Prozorro/index.html",
-    "precache-manifest.4600a9040b55a69fe80a19c5e4c025fa.js": "/Prozorro/precache-manifest.4600a9040b55a69fe80a19c5e4c025fa.js",
+    "precache-manifest.05747c7d94d0042846692942508a42b8.js": "/Prozorro/precache-manifest.05747c7d94d0042846692942508a42b8.js",
     "service-worker.js": "/Prozorro/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/Prozorro/static/css/2.de424728.chunk.css.map",
     "static/css/main.f25f55ab.chunk.css.map": "/Prozorro/static/css/main.f25f55ab.chunk.css.map",
@@ -29,6 +29,6 @@
     "static/css/2.de424728.chunk.css",
     "static/js/2.13de3c0b.chunk.js",
     "static/css/main.f25f55ab.chunk.css",
-    "static/js/main.b5e3057c.chunk.js"
+    "static/js/main.56e29f86.chunk.js"
   ]
 }
