@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Prozorro/precache-manifest.91c05b54f15370f514f6bc6cf756eb0a.js"
+  "/Prozorro/precache-manifest.4600a9040b55a69fe80a19c5e4c025fa.js"
 );
 
 self.addEventListener('message', (event) => {

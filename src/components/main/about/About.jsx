@@ -6,9 +6,50 @@ import MolotSign from './image/molot-sign.png'
 import ScalesSign from './image/scales-sign.png'
 
 export default class About extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      phone: '',
+      email: '',
+      link: ''
+    };
+    this.phoneInput = this.phoneInput.bind(this);
+    this.linkInput = this.linkInput.bind(this);
+    this.emailInput = this.emailInput.bind(this);
+    this.sendData = this.sendData.bind(this);
+  }
 
-  getTenderClick(e) {
+  phoneInput(phone) {
+    this.setState({ phone })
+  }
+  emailInput(email) {
+    this.setState({ email: email.trim() })
+  }
+  linkInput(link) {
+    this.setState({ link: link.trim() })
+  }
+
+  sendData(e) {
     e.preventDefault();
+    if (
+      this.state.phone.toString().length &&
+      this.state.email.length &&
+      this.state.link.length
+    ) {
+      fetch('/php1', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          phone: this.state.phone,
+          email: this.state.email,
+          link: this.state.link
+        })
+      }).then((res) => console.log(res.json()));
+    } else {
+      alert('Все поля должны быть корректно заполнены');
+    }
   }
 
   render() {
@@ -60,18 +101,21 @@ export default class About extends Component {
             <h2 className="text-center mb-2 h5 font-weight-bold">ПЛАНИРУЕТЕ УЧАСТВОВАТЬ В ТЕНДЕРЕ?</h2>
             <p className="text-center font-weight-normal small px-5">Получите список необходимых документов для участия в тендере.</p>
             <form className="form-group d-flex flex-column justify-items-center">
-              <input type="text"
+              <input type="number"
+                onChange={e => this.phoneInput(e.target.value)}
                 className="p-1 rounded border border-light mb-1"
                 placeholder="Телефон" />
-              <input type="text"
+              <input type="email"
+                onChange={e => this.emailInput(e.target.value)}
                 className="p-1 rounded border border-light mb-1"
                 placeholder="E-mail" />
               <input type="text"
+                onChange={e => this.linkInput(e.target.value)}
                 className="p-1 rounded border border-light mb-2"
                 placeholder="Ссылка на тендер в прозорро" />
               <div className=" d-flex justify-content-center">
                 <button className="btn text-white bkg-info px-4 py-1"
-                  onClick={e => this.getTenderClick(e)}>
+                  onClick={e => this.sendData(e)}>
                   Получить бесплатно</button>
               </div>
             </form>

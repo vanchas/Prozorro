@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import './posibilities.scss'
 import img1 from './image/1.png'
 import img2 from './image/2.png'
@@ -12,6 +12,15 @@ import Button from 'react-bootstrap/Button'
 
 export const OrderForm = props => {
   const [show, setShow] = React.useState(false);
+  const [preparationOfTenderBid, setPreparationOfTenderBid] = useState(false);
+  const [validationOfTenderBid, setValidationOfTenderBid] = useState(false);
+  const [competitorRejection, setCompetitorRejection] = useState(false);
+  const [appeal, setAppeal] = useState(false);
+  const [advocacy, setAdvocacy] = useState(false);
+  const [bankGuarantee, setBankGuarantee] = useState(false);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+
 
   const handleClose = () => {
     setShow(false);
@@ -19,6 +28,34 @@ export const OrderForm = props => {
   const handleShow = () => {
     setShow(true);
   };
+
+  const sendData = e => {
+    e.preventDefault();
+    handleClose();
+    if (
+      phone.toString().length &&
+      name.length
+    ) {
+      fetch('/php3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          preparationOfTenderBid,
+          validationOfTenderBid,
+          competitorRejection,
+          appeal,
+          advocacy,
+          bankGuarantee,
+          phone,
+          name
+        })
+      }).then((res) => console.log(res.json()));
+    } else {
+      alert('Все поля должны быть корректно заполнены');
+    }
+  }
 
   return (
     <>
@@ -37,32 +74,44 @@ export const OrderForm = props => {
           className="pb-0 bkg-light-info" >
           <form className="mb-2 d-flex container flex-column modal-form form-group">
             <label className="label">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox"
+                onChange={() => setPreparationOfTenderBid(!preparationOfTenderBid)}
+                className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5"> Подготовка тендерного предложения</span>
             </label>
             <label className="label">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox"
+                onChange={() => setValidationOfTenderBid(!validationOfTenderBid)}
+                className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Проверка тендерного предложения</span>
             </label>
             <label className="label">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox"
+                onChange={() => setCompetitorRejection(!competitorRejection)}
+                className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Отклонение конкурента</span>
             </label>
             <label className="label">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox"
+                onChange={() => setAppeal(!appeal)}
+                className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Обжалование отклонения</span>
             </label>
             <label className="label">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox"
+                onChange={() => setAdvocacy(!advocacy)}
+                className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Защита интересов в АМКУ</span>
             </label>
             <label className="label">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox"
+                onChange={() => setBankGuarantee(!bankGuarantee)}
+                className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Получение банковской гарантии</span>
             </label>
@@ -70,11 +119,13 @@ export const OrderForm = props => {
             <label className="mt-3">
               <input type="text"
                 placeholder="Имя"
+                onChange={e => setName(e.target.value)}
                 className="form-control" />
             </label>
             <label className="mt-2">
               <input type="text"
                 placeholder="Телефон"
+                onChange={e => setPhone(e.target.value)}
                 className="form-control" />
             </label>
           </form>
@@ -83,7 +134,7 @@ export const OrderForm = props => {
           <Button
             variant="info"
             className="btn text-white bkg-info mx-auto d-block mt-3 mb-1 border border-info font-weight-bolder"
-            onClick={handleClose}>
+            onClick={e => sendData(e)}>
             Заказать
           </Button>
           <Button variant="light"
@@ -99,10 +150,6 @@ export const OrderForm = props => {
 
 
 export default class Posibilities extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     return (
       <div className="posibilities-block py-3">
