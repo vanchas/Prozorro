@@ -21,6 +21,9 @@
 		}
 		.form-control {
 			max-width: 15em;
+			background: none;
+			border-color: #fff;
+			height: 2.5em;
 		}
 		.btn {
 			background: #02bfdd;
@@ -48,12 +51,12 @@
 				margin: 0 auto;
 				max-width: auto;
 			}
-			.form-control {
-				max-width: 15em;
-			}
-			.btn {
-				background: #02bfdd;
-			}
+			// .form-control {
+			// 	max-width: 15em;
+			// }
+			// .btn {
+			// 	background: #02bfdd;
+			// }
 		}
 	}
 }

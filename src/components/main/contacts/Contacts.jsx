@@ -48,7 +48,7 @@ export default class Contacts extends Component {
 
           <h2 className="pt-3 pb-2 px-3 text-center">РЕШАЕМ ВАШИ ВОПРОСЫ, <br /> А НЕ СОЗДАЕМ НОВЫЕ!</h2>
           <p className="txt-info text-center pb-2">Напишите нам, и мы свяжемся с вами в ближайшие сроки!</p>
-          <form className="form-group row py-0 m-0 px-lg-5 px-md-2 px-sm-0">
+          <form className="form-group row pt-5 mx-0 mb-2 px-lg-5 px-md-2 px-sm-0">
             <div className=" col-lg-4 col-md-4 col-sm-12">
               <input type="text"
                 onChange={e => this.nameInput(e.target.value)}
@@ -64,7 +64,7 @@ export default class Contacts extends Component {
             <div className="col-lg-4 col-md-4 col-sm-12">
               <button
                 onClick={e => this.sendData(e)}
-                className="text-white mb-3 px-4 d-block btn send-btn">
+                className="text-white mb-3 px-5 py-2 d-block btn send-btn">
                 ОТПРАВИТЬ ЗАЯВКУ
           </button>
             </div>

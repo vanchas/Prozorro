@@ -32,11 +32,11 @@ export default class Header extends Component {
     return (
       <header>
         <div className="flex flex-column navbar navbar-expand-lg navbar-light p-0">
-          <h2 style={HeaderHeadingStyles} className="w-100 py-2">
+          <h2 style={HeaderHeadingStyles} className="w-100 py-3">
             <div className="p-0 m-0 w-100 navbar-brand d-flex align-content-center align-items-center">
-              <span className="d-lg-inline-block d-md-none d-sm-none h1 font-weight-bold text-info pr-3"> ТЕНДЕР В</span>
+              <span className="d-lg-inline-block d-md-none d-sm-none site-head font-weight-bold text-info pr-4"> ТЕНДЕР В</span>
               <img className="header-logo-prozorro" src={HeaderLogo} alt="PROZORRO" />
-              <span className="d-lg-inline-block d-md-none d-sm-none h1 font-weight-bold text-info pl-3"> - ЭТО ПРОСТО!</span>
+              <span className="d-lg-inline-block d-md-none d-sm-none site-head font-weight-bold text-info pl-4"> - ЭТО ПРОСТО!</span>
             </div>
           </h2>
         </div>

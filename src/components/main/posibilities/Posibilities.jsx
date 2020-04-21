@@ -133,7 +133,7 @@ export const OrderForm = props => {
         <Modal.Footer className="pt-0 bkg-light-info d-flex flex-column">
           <Button
             variant="info"
-            className="btn text-white bkg-info mx-auto d-block mt-3 mb-1 border border-info font-weight-bolder"
+            className="btn text-white bkg-info mx-auto d-block mt-3 mb-1 border-0 font-weight-bolder"
             onClick={e => sendData(e)}>
             Заказать
           </Button>
@@ -153,7 +153,7 @@ export default class Posibilities extends Component {
   render() {
     return (
       <div className="posibilities-block py-3">
-        <h2 className="txt-info font-weight-bold text-center py-3">ДОПОЛНИТЕЛЬНЫЕ ВОЗМОЖНОСТИ</h2>
+        <h2 className="txt-info font-weight-bold text-center py-4">ДОПОЛНИТЕЛЬНЫЕ ВОЗМОЖНОСТИ</h2>
 
         <div className="cards-holder row p-0 m-0 w-100">
           <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3">

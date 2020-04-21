@@ -2,9 +2,35 @@
 	max-width: 1200px;
 	margin: 0 auto;
 	position: relative;
+	h2 {
+		font-size: 40px;
+		font-weight: 700;
+		line-height: 45px;
+	}
+	p.px-3 {
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 26px;
+	}
+	u {
+		color: #ff0000;
+	}
+	p strong {
+		font-size: 22px;
+		font-weight: 700;
+		line-height: 26px;
+	}
 
 	.txt-info {
 		color: #02bfdd;
+	}
+	.how-it-works {
+		h3 {
+			font-size: 40px;
+			font-weight: 700;
+			line-height: 35px;
+		}
+		
 	}
 	// .features-cards-group {
 	// }

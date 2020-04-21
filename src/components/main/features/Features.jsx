@@ -10,15 +10,15 @@ import People from './image/6-people.png'
 export default class Features extends Component {
   render() {
     return (
-      <div className="text-center features-block mt-4 py-5">
-        <h2 className="h2 py-2 txt-info font-weight-bold w-75 mx-auto">ПЛАНИРУЕТЕ УЧАСТВОВАТЬ В ТЕНДЕРЕ ИЛИ ГОТОВИТЕ ДОКУМЕНТЫ ДЛЯ ТЕНДЕРА?</h2>
-        <p className="px-3">Одна из главных причин отклонения участников в тендерах это <button className="text-danger btn p-0 m-0"><u><b>НЕПОЛНЫЙ СПИСОК ПОДАННЫХ ДОКУМЕНТОВ.</b></u></button> Неподача любого документа или справки ведет к отклонению тендерного предложения, а это значит Вы ничего не заработали и зря потратили время, силы и деньги!</p>
-        <p className="px-3">
+      <div className="text-center features-block mt-5 py-5">
+        <h2 className="py-2 txt-info font-weight-bold w-75 mx-auto">ПЛАНИРУЕТЕ УЧАСТВОВАТЬ В ТЕНДЕРЕ ИЛИ ГОТОВИТЕ ДОКУМЕНТЫ ДЛЯ ТЕНДЕРА?</h2>
+        <p className="px-3">Одна из главных причин отклонения участников в тендерах это <button className="btn p-0 m-0"><u><b>НЕПОЛНЫЙ СПИСОК ПОДАННЫХ ДОКУМЕНТОВ.</b></u></button> Неподача любого документа или справки ведет к отклонению тендерного предложения, а это значит Вы ничего не заработали и зря потратили время, силы и деньги!</p>
+        <p className="px-3 pt-2">
           <strong className="w-100 h5 txt-info font-weight-bold">ДЛЯ РЕШЕНИЯ ЭТОЙ ПРОБЛЕМЫ МЫ СОЗДАЛИ ПРОГРАММУ ТЕНДЕРБОТ,</strong><br/>
            на основе искусственного интеллект, которая анализирует тендерную документацию и составляет список необходимых документов и справок для участия в тендере.</p>
 
-        <div>
-          <h3 className="txt-info font-weight-bold py-3">КАК ЭТО РАБОТАЕТ</h3>
+        <div className="how-it-works">
+          <h3 className=" txt-info font-weight-bold pt-4 pb-5">КАК ЭТО РАБОТАЕТ</h3>
 
           <div className="row m-0 px-0 py-5 features-cards-group">
 
