@@ -8,6 +8,7 @@ import img5 from './image/5.png'
 import img6 from './image/6.png'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import $ from 'jquery'
 
 
 export const OrderForm = props => {
@@ -22,10 +23,20 @@ export const OrderForm = props => {
   const [phone, setPhone] = useState('');
 
 
+
   const handleClose = () => {
     setShow(false);
   };
-  const handleShow = () => {
+  const handleShow = e => {
+    const target = e.target.parentNode;
+    
+    if ($(target).attr('id') === 'card1') setPreparationOfTenderBid(!preparationOfTenderBid);
+    if ($(target).attr('id') === 'card2') setValidationOfTenderBid(!validationOfTenderBid);
+    if ($(target).attr('id') === 'card3') setCompetitorRejection(!competitorRejection);
+    if ($(target).attr('id') === 'card4') setAppeal(!appeal);
+    if ($(target).attr('id') === 'card5') setAdvocacy(!advocacy);
+    if ($(target).attr('id') === 'card6') setBankGuarantee(!bankGuarantee);
+
     setShow(true);
   };
 
@@ -61,7 +72,7 @@ export const OrderForm = props => {
     <>
       <Button variant="info"
         className="btn text-white bkg-info mx-auto d-block my-3 border border-info font-weight-bolder"
-        onClick={handleShow}>
+        onClick={e => handleShow(e)}>
         Заказать
       </Button>
 
@@ -73,43 +84,43 @@ export const OrderForm = props => {
         <Modal.Body
           className="pb-0 bkg-light-info" >
           <form className="mb-2 d-flex container flex-column modal-form form-group">
-            <label className="label">
-              <input type="checkbox"
+            <label className="label" >
+              <input type="checkbox" checked={preparationOfTenderBid ? true : false}
                 onChange={() => setPreparationOfTenderBid(!preparationOfTenderBid)}
                 className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5"> Подготовка тендерного предложения</span>
             </label>
             <label className="label">
-              <input type="checkbox"
+              <input type="checkbox" checked={validationOfTenderBid ? true : false}
                 onChange={() => setValidationOfTenderBid(!validationOfTenderBid)}
                 className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Проверка тендерного предложения</span>
             </label>
             <label className="label">
-              <input type="checkbox"
+              <input type="checkbox" checked={competitorRejection ? true : false}
                 onChange={() => setCompetitorRejection(!competitorRejection)}
                 className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Отклонение конкурента</span>
             </label>
             <label className="label">
-              <input type="checkbox"
+              <input type="checkbox" checked={appeal ? true : false}
                 onChange={() => setAppeal(!appeal)}
                 className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Обжалование отклонения</span>
             </label>
             <label className="label">
-              <input type="checkbox"
+              <input type="checkbox" checked={advocacy ? true : false}
                 onChange={() => setAdvocacy(!advocacy)}
                 className="form-check-input" />
               <span className="checkmark"></span>
               <span className="ml-5">Защита интересов в АМКУ</span>
             </label>
             <label className="label">
-              <input type="checkbox"
+              <input type="checkbox" checked={bankGuarantee ? true : false}
                 onChange={() => setBankGuarantee(!bankGuarantee)}
                 className="form-check-input" />
               <span className="checkmark"></span>
@@ -156,7 +167,7 @@ export default class Posibilities extends Component {
         <h2 className="txt-info font-weight-bold text-center py-4">ДОПОЛНИТЕЛЬНЫЕ ВОЗМОЖНОСТИ</h2>
 
         <div className="cards-holder row p-0 m-0 w-100">
-          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3">
+          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3" id="card1">
             <div className="card">
               <img src={img1} className="card-img-top" alt="..." />
               <div className="card-body p-1">
@@ -167,7 +178,7 @@ export default class Posibilities extends Component {
             </div>
             <OrderForm />
           </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3">
+          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3" id="card2">
             <div className="card">
               <img src={img2} className="card-img-top" alt="..." />
               <div className="card-body p-1">
@@ -178,7 +189,7 @@ export default class Posibilities extends Component {
             </div>
             <OrderForm />
           </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3">
+          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3" id="card3">
             <div className="card">
               <img src={img3} className="card-img-top" alt="..." />
               <div className="card-body p-1">
@@ -189,7 +200,7 @@ export default class Posibilities extends Component {
             </div>
             <OrderForm />
           </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3">
+          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3" id="card4">
             <div className="card">
               <img src={img4} className="card-img-top" alt="..." />
               <div className="card-body p-1">
@@ -200,7 +211,7 @@ export default class Posibilities extends Component {
             </div>
             <OrderForm />
           </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3">
+          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3" id="card5">
             <div className="card">
               <img src={img5} className="card-img-top" alt="..." />
               <div className="card-body p-1">
@@ -210,7 +221,7 @@ export default class Posibilities extends Component {
             </div>
             <OrderForm />
           </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3">
+          <div className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3" id="card6">
             <div className="card">
               <img src={img6} className="card-img-top" alt="..." />
               <div className="card-body p-1">

@@ -58,6 +58,7 @@ export default class About extends Component {
 
         <div className="robot-holder">
           <img className="" src={BigRob} alt="bot" />
+          <div className="img-border"></div>
         </div>
 
         <header className="row m-0 p-0 about-header">
@@ -71,7 +72,9 @@ export default class About extends Component {
                 <div className="about-header-description-top-inner-item">
                   <div className="inner-content">
                     <div className="img-holder pr-1">
-                    <img src={MolotSign} alt="." className="molot" />
+                      <div className="img">
+                        <img src={MolotSign} alt="." className="molot" />
+                      </div>
                     </div>
                     <p className="header-text-item">ОБРАБОТАЮ ТЕНДЕРНУЮ ДОКУМЕНТАЦИЮ</p>
                   </div>
@@ -79,7 +82,9 @@ export default class About extends Component {
                 <div className="about-header-description-top-inner-item">
                   <div className="inner-content">
                     <div className="img-holder pr-2">
-                    <img className="pt-1" src={DocSign} alt="." />
+                      <div className="img">
+                        <img className="pt-1" src={DocSign} alt="." />
+                      </div>
                     </div>
                     <p className="header-text-item">СОСТАВЛЮ СПИСОК НЕОБХОДИМЫХ ДОКУМЕНТОВ</p>
                   </div>
@@ -87,9 +92,11 @@ export default class About extends Component {
                 <div className="about-header-description-top-inner-item">
                   <div className="inner-content">
                     <div className="img-holder pr-1">
-                    <img src={ScalesSign} alt="." />
+                      <div className="img">
+                        <img src={ScalesSign} alt="." />
+                      </div>
                     </div>
-                    <p className="pl-1 header-text-item">ОТПРАВЛЮ ЕГО ВАМ ПОСЛЕ ПРОВЕРКИ ОПЫТНЫМ ЮРИСТОМ.</p>
+                    <p className="header-text-item">ОТПРАВЛЮ ЕГО ВАМ ПОСЛЕ ПРОВЕРКИ ОПЫТНЫМ ЮРИСТОМ.</p>
                   </div>
                 </div>
               </div>

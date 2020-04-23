@@ -4,6 +4,9 @@
 	.contacts-block-inner {
 		max-width: 1200px;
 		margin: 0 auto;
+		h2, p {
+			user-select: none;
+		}
 	}
 
 	.txt-info {

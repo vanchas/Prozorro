@@ -12,6 +12,7 @@
 	margin: 0 auto;
 
 	h2 {
+		user-select: none;
 		font-size: 40px;
 		font-weight: 700;
 		line-height: 35px;
@@ -23,6 +24,9 @@
 	.cards-holder {
 		.card-holder {
 			.card {
+				h5, p {
+					user-select: none;
+				}
 				height: 20em;
 				display: grid;
 				position: relative;
