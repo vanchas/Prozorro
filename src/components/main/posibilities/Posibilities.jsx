@@ -36,7 +36,7 @@ export const OrderForm = props => {
       phone.toString().length &&
       name.length
     ) {
-      fetch('/2php', {
+      fetch('/2.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'

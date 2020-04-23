@@ -26,7 +26,7 @@ export default class Contacts extends Component {
       this.state.phone.toString().length &&
       this.state.name.length
     ) {
-      fetch('/2php', {
+      fetch('/3.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
