@@ -102,16 +102,16 @@
 	}
 	.small {
 		font-size: 15px;
-		margin-top: 1.9em;
+		margin: 2em 0 1em 0;
 	}
 	.form-group {
 		.form-control {
-			height: 2.8em;
+			height: 2.5em;
 			margin-bottom: .6em;
 		}
 		.btn {
-			margin-top: .3em;
-			padding: .6em 3em;
+			margin-top: .9em;
+			padding: .5em 3em;
 		}
 	}
 }
@@ -175,11 +175,17 @@
 // 	}
 // }
 @media (max-width: 768px) {
+	.big-num {
+		border: none;
+	}
 	.big-num-block {
 		text-align: center;
 	}
 	.big-num-item {
 		margin-left: 0;
+		border-bottom: 1px solid #d7eef3;
+		padding-bottom: .7em;
+		margin-bottom: .7em;
 	}
 	.about-header-description-top {
 		margin-top: -.5em;

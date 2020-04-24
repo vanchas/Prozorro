@@ -69,7 +69,7 @@ export default class About extends Component {
                 <p className="">УНИКАЛЬНАЯ КОМПЬЮТЕРНАЯ ПРОГРАММА</p>
               </div>
               <div className="about-header-description-top-inner font-weight-bolder pt-2 pb-3">
-                <div className="about-header-description-top-inner-item">
+                <div className="about-header-description-top-inner-item mb-1">
                   <div className="inner-content">
                     <div className="img-holder pr-1">
                       <div className="img">
@@ -82,7 +82,7 @@ export default class About extends Component {
                 <div className="about-header-description-top-inner-item">
                   <div className="inner-content">
                     <div className="img-holder pr-2">
-                      <div className="img">
+                      <div className="pl-1 img">
                         <img className="pt-1" src={DocSign} alt="." />
                       </div>
                     </div>
@@ -92,7 +92,7 @@ export default class About extends Component {
                 <div className="about-header-description-top-inner-item">
                   <div className="inner-content">
                     <div className="img-holder pr-1">
-                      <div className="img">
+                      <div className="pl-1 img">
                         <img src={ScalesSign} alt="." />
                       </div>
                     </div>

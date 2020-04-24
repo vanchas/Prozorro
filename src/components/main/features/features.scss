@@ -137,16 +137,32 @@
 @media (max-width: 768px) {
 	.features-block {
 		.features-card {
+			&::before {
+				display: none;
+			}
+			&::after {
+				display: none;
+			}
+			border: none;
 			&:nth-child(2) {
-				&::after {
-					display: none;
-				}
+				margin-bottom: 7em;
 			}
-			&:nth-child(5) {
-				&::before {
-					display: none;
-				}
+			&:nth-child(4) {
+				margin-bottom: 7em;
 			}
+			.card-image-holder {
+				display: none;
+			}
+			// &:nth-child(2) {
+			// 	&::after {
+			// 		display: none;
+			// 	}
+			// }
+			// &:nth-child(5) {
+			// 	&::before {
+			// 		display: none;
+			// 	}
+			// }
 		}
 	}
 }

@@ -25,6 +25,12 @@ export const OrderForm = props => {
 
 
   const handleClose = () => {
+    setPreparationOfTenderBid(false);
+    setValidationOfTenderBid(false);
+    setCompetitorRejection(false);
+    setAppeal(false);
+    setAdvocacy(false);
+    setBankGuarantee(false);
     setShow(false);
   };
   const handleShow = e => {
@@ -64,7 +70,8 @@ export const OrderForm = props => {
         })
       }).then((res) => console.log(res.json()));
     } else {
-      alert('Все поля должны быть корректно заполнены');
+      alert('Поля имя и телефон должны быть корректно заполнены');
+      // alert('Все поля должны быть корректно заполнены');
     }
   }
 
