@@ -83,7 +83,7 @@ export const OrderForm = props => {
         Заказать
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal className="mt-5" show={show} onHide={handleClose}>
         <Modal.Header closeButton
           className="bkg-light-info"
         >{/* <Modal.Title></Modal.Title> */}
