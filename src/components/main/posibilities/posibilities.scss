@@ -4,6 +4,21 @@
 .modal-form {
 	label {
 		display: grid;
+		.react-tel-input .selected-flag {
+			padding: 0 0 0 11px;
+			.arrow {
+				display: none;
+			}
+		}
+		.react-tel-input .form-control {
+			font-size: auto;
+			border: 1px solid #ced4da;
+			border-radius: 5px;
+			line-height: auto;
+			height: auto;
+			width: 100%;
+			outline: none;
+		}
 	}
 }
 
@@ -24,7 +39,8 @@
 	.cards-holder {
 		.card-holder {
 			.card {
-				h5, p {
+				h5,
+				p {
 					user-select: none;
 				}
 				height: 20em;
@@ -51,14 +67,13 @@
 
 @media (max-width: 768px) {
 	.posibilities-block {
-		
-	.cards-holder {
-		.card-holder {
-			.card {
-				height: 21em;
+		.cards-holder {
+			.card-holder {
+				.card {
+					height: 21em;
+				}
 			}
 		}
-	}
 		h2 {
 			font-size: 2em;
 		}

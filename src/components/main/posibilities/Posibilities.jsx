@@ -10,8 +10,11 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import $ from 'jquery'
 
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
-export const OrderForm = props => {
+
+const OrderForm = props => {
   const [show, setShow] = React.useState(false);
   const [preparationOfTenderBid, setPreparationOfTenderBid] = useState(false);
   const [validationOfTenderBid, setValidationOfTenderBid] = useState(false);
@@ -21,6 +24,8 @@ export const OrderForm = props => {
   const [bankGuarantee, setBankGuarantee] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [warningMessage, setWarningMessage] = useState('');
+  const [thanksMessage, setThanksMessage] = useState('');
 
 
 
@@ -33,9 +38,10 @@ export const OrderForm = props => {
     setBankGuarantee(false);
     setShow(false);
   };
+
   const handleShow = e => {
     const target = e.target.parentNode;
-    
+
     if ($(target).attr('id') === 'card1') setPreparationOfTenderBid(!preparationOfTenderBid);
     if ($(target).attr('id') === 'card2') setValidationOfTenderBid(!validationOfTenderBid);
     if ($(target).attr('id') === 'card3') setCompetitorRejection(!competitorRejection);
@@ -46,32 +52,51 @@ export const OrderForm = props => {
     setShow(true);
   };
 
-  const sendData = e => {
+  const fetchData = async e => {
     e.preventDefault();
-    handleClose();
-    if (
-      phone.toString().length &&
-      name.length
-    ) {
-      fetch('/2.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          preparationOfTenderBid,
-          validationOfTenderBid,
-          competitorRejection,
-          appeal,
-          advocacy,
-          bankGuarantee,
-          phone,
-          name
-        })
-      }).then((res) => console.log(res.json()));
+
+    if (phone.toString().length) {
+
+      const phoneno = /^\d{12}$/;
+
+      if (phone.match(phoneno)) {
+
+        setWarningMessage('');
+        setThanksMessage('Спасибо за заказ! Мы с Вами свяжемся в ближайшее время.');
+        setTimeout(() => {
+          handleClose();
+          setThanksMessage('');
+        }, 4000);
+
+        return await fetch('/2.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            preparationOfTenderBid,
+            validationOfTenderBid,
+            competitorRejection,
+            appeal,
+            advocacy,
+            bankGuarantee,
+            phone,
+            name
+          })
+        }).then((res) => {
+          res.json();
+          setPhone('');
+          setName('');
+        });
+
+      } else {
+        setPhone('');
+        return setWarningMessage('Поле с номером телефона должно быть корректно заполнено.');
+      }
     } else {
-      alert('Поля имя и телефон должны быть корректно заполнены');
-      // alert('Все поля должны быть корректно заполнены');
+      setPhone('');
+      return setWarningMessage('Поле с номером телефона должно быть корректно заполнено.');
+      // alert('Поля имя и телефон должны быть корректно заполнены');
     }
   }
 
@@ -81,12 +106,19 @@ export const OrderForm = props => {
         className="btn text-white bkg-info mx-auto d-block my-3 border border-info font-weight-bolder"
         onClick={e => handleShow(e)}>
         Заказать
-      </Button>
+    </Button>
 
       <Modal className="mt-5" show={show} onHide={handleClose}>
         <Modal.Header closeButton
           className="bkg-light-info"
-        >{/* <Modal.Title></Modal.Title> */}
+        >
+          {thanksMessage.length ?
+            <Modal.Title>
+              <div className="alert alert-light text-info text-center h5 border" role="alert">
+                {thanksMessage}
+              </div>
+            </Modal.Title>
+            : null}
         </Modal.Header>
         <Modal.Body
           className="pb-0 bkg-light-info" >
@@ -140,11 +172,29 @@ export const OrderForm = props => {
                 onChange={e => setName(e.target.value)}
                 className="form-control" />
             </label>
+            {warningMessage.length ?
+              <div style={{ fontSize: '.8em' }}
+                className="alert alert-danger m-0 text-center" role="alert">
+                {warningMessage}
+              </div> : null}
             <label className="mt-2">
-              <input type="text"
-                placeholder="Телефон"
-                onChange={e => setPhone(e.target.value)}
-                className="form-control" />
+              <PhoneInput
+                country={'ua'}
+                className="form-control tel-input"
+                onChange={phone => {
+                  setPhone(phone);
+                  $('.alert-danger').slideUp();
+                  setWarningMessage('');
+                }}
+              />
+              {/* <input type="number"
+              placeholder="Телефон"
+              onChange={e => {
+                setPhone(e.target.value);
+                $('.alert-danger').slideUp();
+                setWarningMessage('');
+              }}
+              className="form-control" /> */}
             </label>
           </form>
         </Modal.Body>
@@ -152,9 +202,9 @@ export const OrderForm = props => {
           <Button
             variant="info"
             className="btn text-white bkg-info mx-auto d-block mt-3 mb-1 border-0 font-weight-bolder"
-            onClick={e => sendData(e)}>
+            onClick={e => fetchData(e)}>
             Заказать
-          </Button>
+        </Button>
           <Button variant="light"
             className="m-0 border-0 text-info bkg-light-info"
             onClick={handleClose}>
