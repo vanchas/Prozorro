@@ -30,7 +30,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <header>
+      <header className="header">
         <div className="flex flex-column navbar navbar-expand-lg navbar-light p-0">
           <h2 style={HeaderHeadingStyles} className="w-100 py-3">
             <div className="p-0 m-0 w-100 navbar-brand d-flex align-content-center align-items-center">

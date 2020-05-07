@@ -113,6 +113,15 @@ nav {
 	transform: rotate(45deg);
 }
 @media (max-width: 767px) {
+	.header {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 999;
+		ul li .list-item {
+			font-size: 1.4em;
+		}
+	}
 	.hamRotate.active {
 		transform: rotate(45deg) translate(3em, 3em);
 	}

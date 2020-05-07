@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom'
 import About from './about/About'
 import Features from './features/Features'
 import Contacts from './contacts/Contacts'
-// import $ from 'jquery'
+import $ from 'jquery'
 import Header from '../header/Header'
 import Posibilities from './posibilities/Posibilities'
+import './main.scss'
 
 export default class Main extends Component {
   constructor(props) {
@@ -46,12 +47,20 @@ export default class Main extends Component {
     return false;
   }
 
+  moveToTop() {
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  }
+
   render() {
     return (
       <div>
         <Header
           scrollToElement={this.scrollToElement}
         />
+
+        <span className="btn move-to-top"
+          onClick={this.moveToTop} >
+          <span>&#171;</span></span>
 
         <main>
           <About />

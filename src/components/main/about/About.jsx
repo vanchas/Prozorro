@@ -11,7 +11,10 @@ export default class About extends Component {
     this.state = {
       phone: '',
       email: '',
-      link: ''
+      link: '',
+      todayNum: 10,
+      monthNum: 500,
+      bestNum: 2.5
     };
     this.phoneInput = this.phoneInput.bind(this);
     this.linkInput = this.linkInput.bind(this);
@@ -50,6 +53,22 @@ export default class About extends Component {
     } else {
       alert('Все поля должны быть корректно заполнены');
     }
+  }
+
+  async componentDidMount() {
+    return await fetch('/4.php')
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({
+          todayNum: data.today,
+          monthNum: data.month,
+          bestNum: data.best
+        });
+        // console.log(data);
+      })
+      .catch(err => console.log('Error:', err));
   }
 
   render() {
@@ -134,16 +153,16 @@ export default class About extends Component {
 
           <div className="big-num-block col-lg-6 col-md-12 row px-0 py-3 m-0 w-100">
             <div className="big-num-item col-lg-4 col-md-12">
-              <span className="txt-info big-num font-weight-bold">10</span>
+              <span className="txt-info big-num font-weight-bold">{this.state.todayNum}</span>
               <span className="num-disc">За сегодня обработано тендеров</span>
             </div>
             <div className="big-num-item col-lg-4 col-md-12">
-              <span className="txt-info big-num font-weight-bold">500</span>
+              <span className="txt-info big-num font-weight-bold">{this.state.monthNum}</span>
               <span className="num-disc">За месяц обработано тендеров</span>
             </div>
             <div className="big-num-item block-wrap col-lg-4 col-md-12 pr-0">
               <span className="txt-info big-num font-weight-bold">
-                <span> 2,5</span>
+                <span>{this.state.bestNum}</span>
                 <small className="min">минуты</small>
               </span>
               <span className="num-disc">Лучший результат на тендер</span>

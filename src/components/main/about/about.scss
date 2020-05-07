@@ -1,6 +1,6 @@
 .about-wrapper {
 	max-width: 1200px;
-	margin: 0 auto;
+	margin: 0 auto 0 auto;
 }
 .about-header {
 	.header-description {
@@ -139,6 +139,14 @@
 	font-weight: 500;
 }
 
+@media (max-width: 442px) {
+	.tender-form {
+		p {
+			padding-top: 2em;
+		}
+	}
+}
+
 @media (max-width: 1200px) {
 	.about-header-description-top {
 		padding-left: 0;
@@ -175,6 +183,9 @@
 // 	}
 // }
 @media (max-width: 768px) {
+	.about-wrapper {
+		margin: 2.2em auto 0 auto;
+	}
 	.big-num {
 		border: none;
 	}

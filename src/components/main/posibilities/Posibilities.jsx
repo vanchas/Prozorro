@@ -54,6 +54,16 @@ const OrderForm = props => {
 
   const fetchData = async e => {
     e.preventDefault();
+    // console.log(
+    //   preparationOfTenderBid,
+    //   validationOfTenderBid,
+    //   competitorRejection,
+    //   appeal,
+    //   advocacy,
+    //   bankGuarantee,
+    //   name,
+    //   phone
+    // );
 
     if (phone.toString().length) {
 
@@ -96,7 +106,6 @@ const OrderForm = props => {
     } else {
       setPhone('');
       return setWarningMessage('Поле с номером телефона должно быть корректно заполнено.');
-      // alert('Поля имя и телефон должны быть корректно заполнены');
     }
   }
 
