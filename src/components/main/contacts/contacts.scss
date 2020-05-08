@@ -21,6 +21,9 @@
 		}
 		.phone-input {
 			margin: 0 auto;
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
 		}
 		.form-control {
 			max-width: 15em;

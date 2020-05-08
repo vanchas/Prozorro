@@ -30,6 +30,7 @@ const OrderForm = props => {
 
 
   const handleClose = () => {
+    setWarningMessage('');
     setPreparationOfTenderBid(false);
     setValidationOfTenderBid(false);
     setCompetitorRejection(false);
@@ -40,6 +41,7 @@ const OrderForm = props => {
   };
 
   const handleShow = e => {
+    setWarningMessage('');
     const target = e.target.parentNode;
 
     if ($(target).attr('id') === 'card1') setPreparationOfTenderBid(!preparationOfTenderBid);
@@ -54,58 +56,41 @@ const OrderForm = props => {
 
   const fetchData = async e => {
     e.preventDefault();
-    // console.log(
-    //   preparationOfTenderBid,
-    //   validationOfTenderBid,
-    //   competitorRejection,
-    //   appeal,
-    //   advocacy,
-    //   bankGuarantee,
-    //   name,
-    //   phone
-    // );
+    // const phoneno = /^\d{12}$/;
 
-    if (phone.toString().length) {
+    // if (phone.match(phoneno)) {
+    if (phone.toString().length && name.length) {
 
-      const phoneno = /^\d{12}$/;
+      setWarningMessage('');
+      setThanksMessage('Спасибо за заказ! Мы с Вами свяжемся в ближайшее время.');
+      setTimeout(() => {
+        handleClose();
+        setThanksMessage('');
+      }, 4000);
 
-      if (phone.match(phoneno)) {
-
-        setWarningMessage('');
-        setThanksMessage('Спасибо за заказ! Мы с Вами свяжемся в ближайшее время.');
-        setTimeout(() => {
-          handleClose();
-          setThanksMessage('');
-        }, 4000);
-
-        return await fetch('/2.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify({
-            preparationOfTenderBid,
-            validationOfTenderBid,
-            competitorRejection,
-            appeal,
-            advocacy,
-            bankGuarantee,
-            phone,
-            name
-          })
-        }).then((res) => {
-          res.json();
-          setPhone('');
-          setName('');
-        });
-
-      } else {
-        setPhone('');
-        return setWarningMessage('Поле с номером телефона должно быть корректно заполнено.');
-      }
-    } else {
+      await fetch('/2.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          preparationOfTenderBid,
+          validationOfTenderBid,
+          competitorRejection,
+          appeal,
+          advocacy,
+          bankGuarantee,
+          phone,
+          name
+        })
+      })
+        .then((res) => res)
+        .catch(err => console.error("Error:", err))
       setPhone('');
-      return setWarningMessage('Поле с номером телефона должно быть корректно заполнено.');
+      setName('');
+    } else {
+
+      return setWarningMessage('Заполните поле "Имя" и "Телефон"');
     }
   }
 
@@ -176,18 +161,25 @@ const OrderForm = props => {
             </label>
 
             <label className="mt-3">
-              <input type="text"
+              <input type="text" required
                 placeholder="Имя"
-                onChange={e => setName(e.target.value)}
+                value={name}
+                onChange={e => {
+                  setName(e.target.value);
+                  $('.alert-danger').slideUp();
+                  setWarningMessage('');
+                }}
                 className="form-control" />
             </label>
             {warningMessage.length ?
-              <div style={{ fontSize: '.8em' }}
-                className="alert alert-danger m-0 text-center" role="alert">
+              <div style={{ fontSize: '1em' }}
+                className="py-1 alert alert-danger m-0 text-center" role="alert">
                 {warningMessage}
               </div> : null}
             <label className="mt-2">
               <PhoneInput
+                value={phone}
+                required
                 country={'ua'}
                 className="form-control tel-input"
                 onChange={phone => {
@@ -196,14 +188,6 @@ const OrderForm = props => {
                   setWarningMessage('');
                 }}
               />
-              {/* <input type="number"
-              placeholder="Телефон"
-              onChange={e => {
-                setPhone(e.target.value);
-                $('.alert-danger').slideUp();
-                setWarningMessage('');
-              }}
-              className="form-control" /> */}
             </label>
           </form>
         </Modal.Body>

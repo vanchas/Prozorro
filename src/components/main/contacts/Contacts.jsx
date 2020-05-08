@@ -20,13 +20,14 @@ export default class Contacts extends Component {
     this.setState({ name: name.trim() })
   }
 
-  sendData(e) {
+  async sendData(e) {
     e.preventDefault();
+
     if (
       this.state.phone.toString().length &&
       this.state.name.length
     ) {
-      fetch('/3.php', {
+      await fetch('/3.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -35,9 +36,14 @@ export default class Contacts extends Component {
           phone: this.state.phone,
           name: this.state.name
         })
-      }).then((res) => console.log(res.json()));
+      })
+        .then(res => res)
+        .catch(err => console.error('Error:', err));
+      this.setState({
+        phone: '', name: ''
+      });
     } else {
-      alert('Все поля должны быть корректно заполнены');
+      // alert('Все поля должны быть корректно заполнены');
     }
   }
 
@@ -48,25 +54,25 @@ export default class Contacts extends Component {
 
           <h2 className="pt-3 pb-2 px-3 text-center">РЕШАЕМ ВАШИ ВОПРОСЫ, <br /> А НЕ СОЗДАЕМ НОВЫЕ!</h2>
           <p className="txt-info text-center pb-2">Напишите нам, и мы свяжемся с вами в ближайшие сроки!</p>
-          <form className="form-group row pt-5 mx-0 mb-2 px-lg-5 px-md-2 px-sm-0">
-            <div className=" col-lg-4 col-md-4 col-sm-12">
-              <input type="text"
+          <form onSubmit={e => this.sendData(e)}
+            className="form-group row pt-5 mx-0 mb-2 px-lg-5 px-md-2 px-sm-0">
+            <label className=" col-lg-4 col-md-4 col-sm-12">
+              <input type="text" required="required"
                 onChange={e => this.nameInput(e.target.value)}
+                value={this.state.name}
                 placeholder="Ваше имя"
                 className="form-control mb-3 name-input" />
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-12">
-              <input type="number"
+            </label>
+            <label className="col-lg-4 col-md-4 col-sm-12">
+              <input type="number" required="required"
                 onChange={e => this.phoneInput(e.target.value)}
+                value={this.state.phone}
                 placeholder="Ваш телефон"
                 className="form-control mb-3 phone-input" />
-            </div>
+            </label>
             <div className="col-lg-4 col-md-4 col-sm-12">
-              <button
-                onClick={e => this.sendData(e)}
-                className="text-white mb-3 px-5 py-2 d-block btn send-btn">
-                ОТПРАВИТЬ ЗАЯВКУ
-          </button>
+              <input type="submit"
+                className="text-white mb-3 px-5 py-2 d-block btn send-btn" value="ОТПРАВИТЬ ЗАЯВКУ" />
             </div>
           </form>
         </div>
