@@ -143,12 +143,18 @@ export default class About extends Component {
             <p className="text-center font-weight-normal small">Получите список необходимых документов для участия в тендере.</p>
             <form className="form-group d-flex flex-column justify-items-center">
               <input type="number"
-                onChange={e => this.phoneInput(e.target.value)}
+                onChange={e => {
+                  this.phoneInput(e.target.value);
+                  this.setState({ warnMess: '' });
+                }}
                 className="form-control rounded border border-light"
                 value={this.state.phone}
                 placeholder="Телефон" />
               <input type="email"
-                onChange={e => this.emailInput(e.target.value)}
+                onChange={e => {
+                  this.emailInput(e.target.value);
+                  this.setState({ warnMess: '' });
+                }}
                 value={this.state.email}
                 className="form-control rounded border border-light"
                 placeholder="E-mail" />
@@ -159,12 +165,13 @@ export default class About extends Component {
                 placeholder="Ссылка на тендер в прозорро" />
               <div className="">
                 {this.state.warnMess.length ?
-                  <div class="alert alert-danger" role="alert">
+                  <div class="alert alert-danger h6 py-2" role="alert">
                     {this.state.warnMess}
-                  </div> : null}
-                <button className="mx-auto d-block btn text-white bkg-info"
-                  onClick={e => this.sendData(e)}>
-                  Получить бесплатно</button>
+                  </div>
+                  :
+                  <button className="mx-auto d-block btn text-white bkg-info"
+                    onClick={e => this.sendData(e)}>
+                    Получить бесплатно</button>}
               </div>
             </form>
           </div>
