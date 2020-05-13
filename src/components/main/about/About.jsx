@@ -14,7 +14,8 @@ export default class About extends Component {
       link: '',
       todayNum: 10,
       monthNum: 500,
-      bestNum: 2.5
+      bestNum: 2.5,
+      warnMess: ''
     };
     this.phoneInput = this.phoneInput.bind(this);
     this.linkInput = this.linkInput.bind(this);
@@ -35,10 +36,10 @@ export default class About extends Component {
   sendData(e) {
     e.preventDefault();
     if (
-      this.state.phone.toString().length &&
-      this.state.email.length &&
-      this.state.link.length
+      this.state.phone.toString().length ||
+      this.state.email.length
     ) {
+      this.setState({ warnMess: '' })
       fetch('/1.php', {
         method: 'POST',
         headers: {
@@ -49,26 +50,38 @@ export default class About extends Component {
           email: this.state.email,
           link: this.state.link
         })
-      }).then((res) => console.log(res.json()));
+      }).then((res) => {
+        this.setState({
+          phone: '',
+          email: '',
+          link: ''
+        });
+        // console.log(res.json())
+      });
     } else {
-      alert('Все поля должны быть корректно заполнены');
+      this.setState({
+        warnMess: 'Поле телефон либо е-мейл должно быть заполнено для связи с Вами'
+      })
     }
   }
 
   async componentDidMount() {
-    return await fetch('/4.php')
-      .then((response) => {
-        return response.json();
-      })
+    return await fetch('/4.php', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+      .then((response) => response.json())
       .then((data) => {
         this.setState({
-          todayNum: data.today,
-          monthNum: data.month,
-          bestNum: data.best
+          todayNum: data.todayNum,
+          monthNum: data.monthNum,
+          bestNum: data.bestNum
         });
-        // console.log(data);
-      })
-      .catch(err => console.log('Error:', err));
+        // console.log(data); 
+      }).catch(err => console.log('Error:', err));
   }
 
   render() {
@@ -132,16 +145,23 @@ export default class About extends Component {
               <input type="number"
                 onChange={e => this.phoneInput(e.target.value)}
                 className="form-control rounded border border-light"
+                value={this.state.phone}
                 placeholder="Телефон" />
               <input type="email"
                 onChange={e => this.emailInput(e.target.value)}
+                value={this.state.email}
                 className="form-control rounded border border-light"
                 placeholder="E-mail" />
               <input type="text"
                 onChange={e => this.linkInput(e.target.value)}
+                value={this.state.link}
                 className="form-control rounded border border-light"
                 placeholder="Ссылка на тендер в прозорро" />
               <div className="">
+                {this.state.warnMess.length ?
+                  <div class="alert alert-danger" role="alert">
+                    {this.state.warnMess}
+                  </div> : null}
                 <button className="mx-auto d-block btn text-white bkg-info"
                   onClick={e => this.sendData(e)}>
                   Получить бесплатно</button>

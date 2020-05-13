@@ -18,19 +18,6 @@ export default class Main extends Component {
   }
 
   scrollToElement(ref) {
-    // $(document).ready(function () {
-    //   let elementClick;
-    //   if (ref === 'about') {
-    //     elementClick = $('#about');
-    //   } else if (ref === 'features') {
-    //     elementClick = $('#features');
-    //   } else if (ref === 'contacts') {
-    //     elementClick = $('#contacts');
-    //   }
-    //   let destination = $(elementClick).offset().top;
-    //   $('html').animate({ scrollTop: destination }, 1000);
-    //   return false;
-    // });
     let elementClick;
     if (ref === 'about') {
       elementClick = this.About;
