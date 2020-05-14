@@ -16,10 +16,11 @@ nav {
 		}
 		@media screen and (max-width: 768px) {
 			float: right;
-			position: absolute;
+			position: fixed;
+			z-index: 999;
 			height: 4.5em;
 			width: 4.5em;
-			top: 0;
+			top: 5em;
 			right: 0;
 			transform: translateY(-110%);
 			z-index: 1000;
@@ -52,8 +53,9 @@ nav {
 		}
 		@media screen and (max-width: 768px) {
 			position: absolute;
+			// position: fixed;
 			padding: 3.5em 0 1em 0;
-			transform: translate(0, -45%);
+			transform: translate(0, -50%);
 			width: 100%;
 			background: #e2f3f7;
 			z-index: 100;
@@ -71,6 +73,9 @@ nav {
 			border-bottom: 2px solid #d9f1f5;
 			padding: 1em 0;
 			transition: .3s;
+			@media screen and (max-width: 768px) {
+				padding: .3em;
+			}
 			&:hover {
 				border-bottom: 2px solid #17a2b8;
 				.list-item {
@@ -114,10 +119,10 @@ nav {
 }
 @media (max-width: 767px) {
 	.header {
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 999;
+		// position: fixed;
+		// top: 0;
+		// width: 100%;
+		// z-index: 999;
 		ul li .list-item {
 			font-size: 1.4em;
 		}
