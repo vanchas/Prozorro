@@ -52,10 +52,8 @@ nav {
 			margin: 10px 0;
 		}
 		@media screen and (max-width: 768px) {
-			// position: absolute;
 			position: fixed;
 			padding: 3.5em 0 1em 0;
-			// transform: translate(0, -50%);
 			transform: translate(0, -10%);
 			width: 100%;
 			background: #e2f3f7;
@@ -120,10 +118,6 @@ nav {
 }
 @media (max-width: 767px) {
 	.header {
-		// position: fixed;
-		// top: 0;
-		// width: 100%;
-		// z-index: 999;
 		ul li .list-item {
 			font-size: 1.4em;
 		}
@@ -275,6 +269,9 @@ nav {
 }
 
 header {
+	.mobile-sign-head {
+		display: none;
+	}
 	.navbar-brand {
 		.site-head {
 			font-size: 3em;
@@ -301,16 +298,44 @@ header {
 		}
 	}
 }
-
+@media (max-width: 430px) {
+	header {
+		.mobile-sign-head {
+			font-size: .9em;
+		 }
+	}
+}
+@media (max-width: 395px) {
+	header {
+		.mobile-sign-head {
+			font-size: .8em;
+		 }
+	}
+}
+@media (max-width: 340px) {
+	header {
+		.mobile-sign-head {
+			font-size: .7em;
+		 }
+	}
+}
 @media (max-width: 768px) {
 	header {
+		.mobile-sign-head {
+			color: #17a2b8 !important;
+			text-transform: uppercase !important;
+			font-weight: 900 !important;
+			display: block;
+			padding-top: .2em;
+			text-align: center;
+			width: calc(100% - 1.9em);
+		}
 		.navbar-brand {
 			.site-head {
 				display: none;
 			}
 			.header-logo-prozorro {
-				height: 2.5em;
-				margin-right: 2.5em;
+				display: none;
 			}
 		}
 	}

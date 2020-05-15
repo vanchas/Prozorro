@@ -21,10 +21,6 @@ export default class Header extends Component {
   classListToggle() {
     this.openNav();
     $('.mobilBar').toggleClass('active');
-    // window.scroll({
-    //   top: 0,
-    //   behavior: 'smooth'
-    // });
   }
 
   onNavItemClick(item) {
@@ -37,6 +33,9 @@ export default class Header extends Component {
       <header className="header">
         <div className="flex flex-column navbar navbar-expand-lg navbar-light p-0">
           <h2 style={HeaderHeadingStyles} className="w-100 py-3">
+            <div className="mobile-sign-head">
+              <span>Тендер - это просто!</span>
+            </div>
             <div className="p-0 m-0 w-100 navbar-brand d-flex align-content-center align-items-center">
               <span className="d-lg-inline-block d-md-none d-sm-none site-head font-weight-bold text-info pr-4"> ТЕНДЕР В</span>
               <img className="header-logo-prozorro" src={HeaderLogo} alt="PROZORRO" />
