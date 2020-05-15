@@ -21,10 +21,10 @@ export default class Header extends Component {
   classListToggle() {
     this.openNav();
     $('.mobilBar').toggleClass('active');
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    // window.scroll({
+    //   top: 0,
+    //   behavior: 'smooth'
+    // });
   }
 
   onNavItemClick(item) {

@@ -26,7 +26,8 @@ export default class Main extends Component {
     } else if (ref === 'contacts') {
       elementClick = this.Contacts;
     }
-    let destination = ReactDOM.findDOMNode(elementClick.current).getBoundingClientRect().top;
+    // let destination = ReactDOM.findDOMNode(elementClick.current).getBoundingClientRect().top;
+    let destination = ReactDOM.findDOMNode(elementClick.current).offsetTop;
     window.scroll({
       top: destination,
       behavior: 'smooth'

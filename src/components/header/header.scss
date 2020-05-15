@@ -52,10 +52,11 @@ nav {
 			margin: 10px 0;
 		}
 		@media screen and (max-width: 768px) {
-			position: absolute;
-			// position: fixed;
+			// position: absolute;
+			position: fixed;
 			padding: 3.5em 0 1em 0;
-			transform: translate(0, -50%);
+			// transform: translate(0, -50%);
+			transform: translate(0, -10%);
 			width: 100%;
 			background: #e2f3f7;
 			z-index: 100;
