@@ -6,7 +6,9 @@ export default class Contacts extends Component {
     super(props);
     this.state = {
       phone: '',
-      name: ''
+      name: '',
+      warnMess: '',
+      successMess: ''
     };
     this.phoneInput = this.phoneInput.bind(this);
     this.nameInput = this.nameInput.bind(this);
@@ -37,17 +39,29 @@ export default class Contacts extends Component {
           name: this.state.name
         })
       })
-        .then(res => res)
+        .then(() => {
+          this.setState({
+            phone: '',
+            name: '',
+            successMess: 'Спасибо! Мы с Вами свяжемся в ближайшее время.'
+          });
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.setState({ successMess: '' });
+          }, 3000);
+        })
         .catch(err => console.error('Error:', err));
-      this.setState({
-        phone: '', name: ''
-      });
     } else {
-      // alert('Все поля должны быть корректно заполнены');
+      this.setState({ warnMess: 'Заполните, пожалуйста, все поля' });
     }
   }
 
   render() {
+    const message = this.state.warnMess.length
+      ? <div class="alert alert-danger h6 py-2" role="alert">{this.state.warnMess}</div>
+      : <div class="alert alert-success h6 py-2" role="alert">{this.state.successMess}</div>;
+
     return (
       <div className="py-4 contacts-block">
         <div className="contacts-block-inner">
@@ -57,22 +71,30 @@ export default class Contacts extends Component {
           <form onSubmit={e => this.sendData(e)}
             className="form-group row pt-5 mx-0 mb-2 px-lg-5 px-md-2 px-sm-0">
             <label className=" col-lg-4 col-md-4 col-sm-12">
-              <input type="text" required="required"
-                onChange={e => this.nameInput(e.target.value)}
+              <input type="text"
+                onChange={e => {
+                  this.nameInput(e.target.value);
+                  this.setState({ warnMess: '' });
+                }}
                 value={this.state.name}
                 placeholder="Ваше имя"
                 className="form-control mb-3 name-input" />
             </label>
             <label className="col-lg-4 col-md-4 col-sm-12">
-              <input type="number" required="required"
-                onChange={e => this.phoneInput(e.target.value)}
+              <input type="number"
+                onChange={e => {
+                  this.phoneInput(e.target.value);
+                  this.setState({ warnMess: '' });
+                }}
                 value={this.state.phone}
                 placeholder="Ваш телефон"
                 className="form-control mb-3 phone-input" />
             </label>
             <div className="col-lg-4 col-md-4 col-sm-12">
-              <input type="submit"
-                className="text-white mb-3 px-5 py-2 d-block btn send-btn" value="ОТПРАВИТЬ ЗАЯВКУ" />
+              {(this.state.warnMess.length || this.state.successMess.length) ? message
+                :
+                <input type="submit"
+                  className="text-white mb-3 px-5 py-2 d-block btn send-btn" value="ОТПРАВИТЬ ЗАЯВКУ" />}
             </div>
           </form>
         </div>

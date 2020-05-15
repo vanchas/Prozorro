@@ -15,7 +15,9 @@ export default class About extends Component {
       todayNum: 10,
       monthNum: 500,
       bestNum: 2.5,
-      warnMess: ''
+      warnMess: '',
+      successMess: ''
+
     };
     this.phoneInput = this.phoneInput.bind(this);
     this.linkInput = this.linkInput.bind(this);
@@ -36,8 +38,9 @@ export default class About extends Component {
   sendData(e) {
     e.preventDefault();
     if (
-      this.state.phone.toString().length ||
-      this.state.email.length
+      this.state.phone.toString().length &&
+      this.state.email.length &&
+      this.state.link.length
     ) {
       this.setState({ warnMess: '' })
       fetch('/1.php', {
@@ -50,17 +53,21 @@ export default class About extends Component {
           email: this.state.email,
           link: this.state.link
         })
-      }).then((res) => {
+      }).then(() => {
         this.setState({
           phone: '',
           email: '',
-          link: ''
+          link: '',
+          successMess: 'Спасибо! Мы с Вами свяжемся в ближайшее время.'
         });
-        // console.log(res.json())
+      }).then(() => {
+        setTimeout(() => {
+          this.setState({ successMess: '' });
+        }, 3000);
       });
     } else {
       this.setState({
-        warnMess: 'Поле телефон либо е-мейл должно быть заполнено для связи с Вами'
+        warnMess: 'Заполните, пожалуйста, все поля'
       })
     }
   }
@@ -80,11 +87,14 @@ export default class About extends Component {
           monthNum: data.monthNum,
           bestNum: data.bestNum
         });
-        // console.log(data); 
       }).catch(err => console.log('Error:', err));
   }
 
   render() {
+    const message = this.state.warnMess.length
+      ? <div class="alert alert-danger h6 py-2" role="alert">{this.state.warnMess}</div>
+      : <div class="alert alert-success h6 py-2" role="alert">{this.state.successMess}</div>;
+
     return (
       <div className="about-wrapper position-relative">
 
@@ -159,15 +169,16 @@ export default class About extends Component {
                 className="form-control rounded border border-light"
                 placeholder="E-mail" />
               <input type="text"
-                onChange={e => this.linkInput(e.target.value)}
+                onChange={e => {
+                  this.linkInput(e.target.value);
+                  this.setState({ warnMess: '' });
+                }}
                 value={this.state.link}
                 className="form-control rounded border border-light"
                 placeholder="Ссылка на тендер в прозорро" />
               <div className="">
-                {this.state.warnMess.length ?
-                  <div class="alert alert-danger h6 py-2" role="alert">
-                    {this.state.warnMess}
-                  </div>
+                {(this.state.warnMess.length || this.state.successMess.length) ?
+                  message
                   :
                   <button className="mx-auto d-block btn text-white bkg-info"
                     onClick={e => this.sendData(e)}>

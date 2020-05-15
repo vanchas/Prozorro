@@ -24,13 +24,13 @@ const OrderForm = props => {
   const [bankGuarantee, setBankGuarantee] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [warningMessage, setWarningMessage] = useState('');
-  const [thanksMessage, setThanksMessage] = useState('');
+  const [warnMess, setWarnMess] = useState('');
+  const [successMess, setSuccessMess] = useState('');
 
 
 
   const handleClose = () => {
-    setWarningMessage('');
+    setWarnMess('');
     setPreparationOfTenderBid(false);
     setValidationOfTenderBid(false);
     setCompetitorRejection(false);
@@ -41,7 +41,7 @@ const OrderForm = props => {
   };
 
   const handleShow = e => {
-    setWarningMessage('');
+    setWarnMess('');
     const target = e.target.parentNode;
 
     if ($(target).attr('id') === 'card1') setPreparationOfTenderBid(!preparationOfTenderBid);
@@ -59,15 +59,16 @@ const OrderForm = props => {
     // const phoneno = /^\d{12}$/;
 
     // if (phone.match(phoneno)) {
-    if (phone.toString().length && name.length) {
-
-      setWarningMessage('');
-      setThanksMessage('Спасибо за заказ! Мы с Вами свяжемся в ближайшее время.');
-      setTimeout(() => {
-        handleClose();
-        setThanksMessage('');
-      }, 4000);
-
+    if (
+      phone.toString().length &&
+      name.length &&
+      (preparationOfTenderBid ||
+        validationOfTenderBid ||
+        competitorRejection ||
+        appeal ||
+        advocacy ||
+        bankGuarantee)
+    ) {
       await fetch('/2.php', {
         method: 'POST',
         headers: {
@@ -84,13 +85,20 @@ const OrderForm = props => {
           name
         })
       })
-        .then((res) => res)
+        .then(() => {
+          setPhone('');
+          setName('');
+          setWarnMess('');
+          setSuccessMess('Спасибо за заказ! Мы с Вами свяжемся в ближайшее время.');
+        }).then(() => {
+          setTimeout(() => {
+            handleClose();
+            setSuccessMess('');
+          }, 3000);
+        })
         .catch(err => console.error("Error:", err))
-      setPhone('');
-      setName('');
     } else {
-
-      return setWarningMessage('Заполните поле "Имя" и "Телефон"');
+      setWarnMess('Заполните, пожалуйста, поля "Имя", "Телефон" и выберите один пункт из услуг.');
     }
   }
 
@@ -106,10 +114,10 @@ const OrderForm = props => {
         <Modal.Header closeButton
           className="bkg-light-info"
         >
-          {thanksMessage.length ?
+          {successMess.length ?
             <Modal.Title>
               <div className="alert alert-light text-info text-center h5 border" role="alert">
-                {thanksMessage}
+                {successMess}
               </div>
             </Modal.Title>
             : null}
@@ -167,17 +175,18 @@ const OrderForm = props => {
                 onChange={e => {
                   setName(e.target.value);
                   $('.alert-danger').slideUp();
-                  setWarningMessage('');
+                  setWarnMess('');
                 }}
                 className="form-control" />
             </label>
-            {warningMessage.length ?
-              <div style={{ fontSize: '1em' }}
+            {warnMess.length ?
+              <div style={{ fontSize: '.8em' }}
                 className="py-1 alert alert-danger m-0 text-center" role="alert">
-                {warningMessage}
+                {warnMess}
               </div> : null}
             <label className="mt-2">
               <PhoneInput
+                placeholder="Телефон"
                 value={phone}
                 required
                 country={'ua'}
@@ -185,7 +194,7 @@ const OrderForm = props => {
                 onChange={phone => {
                   setPhone(phone);
                   $('.alert-danger').slideUp();
-                  setWarningMessage('');
+                  setWarnMess('');
                 }}
               />
             </label>
