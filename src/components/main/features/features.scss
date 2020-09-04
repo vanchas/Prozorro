@@ -18,7 +18,7 @@
 	}
 	p strong {
 		user-select: none;
-		font-size: 22px;
+		font-size: 17px;
 		font-weight: 700;
 		line-height: 26px;
 	}
@@ -33,7 +33,6 @@
 			font-weight: 700;
 			line-height: 35px;
 		}
-		
 	}
 	// .features-cards-group {
 	// }
@@ -48,16 +47,16 @@
 			border-top-right-radius: 20em;
 			transform: translateY(-11%);
 			&::before {
-				content: '';
+				content: "";
 				position: absolute;
 				width: 1.6em;
 				height: 1.6em;
 				border-radius: 50%;
 				background-color: #eee;
-				background-image: url('./image/info-dot.png');
+				background-image: url("./image/info-dot.png");
 				background-repeat: no-repeat;
 				background-position: center;
-				margin: -.8em auto auto -.8em;
+				margin: -0.8em auto auto -0.8em;
 			}
 		}
 		&:nth-child(even) {
@@ -66,17 +65,17 @@
 			border-bottom-right-radius: 20em;
 			transform: translateY(12%);
 			&::after {
-				content: '';
+				content: "";
 				position: absolute;
 				position: absolute;
 				width: 1.6em;
 				height: 1.6em;
 				border-radius: 50%;
 				background-color: #eee;
-				background-image: url('./image/info-dot.png');
+				background-image: url("./image/info-dot.png");
 				background-repeat: no-repeat;
 				background-position: center;
-				margin: -.8em auto auto -.8em;
+				margin: -0.8em auto auto -0.8em;
 			}
 		}
 
@@ -94,16 +93,16 @@
 			position: relative;
 			&::before {
 				position: absolute;
-				content: '';
-				background: url('./image/drop-down.png') bottom center / cover no-repeat;
+				content: "";
+				background: url("./image/drop-down.png") bottom center / cover no-repeat;
 				height: 3.5em;
 				width: 7px;
 				transform: translateY(-115%);
 			}
 			&::after {
 				position: absolute;
-				content: '';
-				background: url('./image/drop-up.png') top center / cover no-repeat;
+				content: "";
+				background: url("./image/drop-up.png") top center / cover no-repeat;
 				height: 3.5em;
 				width: 9px;
 				transform: translateY(115%);
@@ -114,12 +113,12 @@
 		}
 		.bkg-info {
 			height: 15em;
-			border-radius: .5em;
+			border-radius: 0.5em;
 			background-color: #02bfdd;
 			.h-100 {
 				b {
 					line-height: 1em;
-					padding-bottom: .2em;
+					padding-bottom: 0.2em;
 					font-size: 2.5em;
 				}
 				p {
