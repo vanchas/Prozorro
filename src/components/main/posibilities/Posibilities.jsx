@@ -86,23 +86,23 @@ const OrderForm = (props) => {
 				}),
 			})
 				.then(() => {
-					setPhone("");
-					setName("");
 					setWarnMess("");
 					setSuccessMess(
-						"Спасибо за заказ! Мы с Вами свяжемся в ближайшее время."
+						props.lang.thanks
 					);
 				})
 				.then(() => {
 					setTimeout(() => {
 						handleClose();
 						setSuccessMess("");
+						setPhone("");
+						setName("");
 					}, 3000);
 				})
 				.catch((err) => console.error("Error:", err));
 		} else {
 			setWarnMess(
-				'Заполните, пожалуйста, поля "Имя", "Телефон" и выберите один пункт из услуг.'
+				props.lang.warning
 			);
 		}
 	};

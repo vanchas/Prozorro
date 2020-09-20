@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./header.scss";
-import languages from "../data/languages.json";
 
 export default function Toggler({ setLang }) {
 	const [checked, setChecked] = useState(false);
 
 	const toggle = () => {
 		setChecked(!checked);
-		setLang(!checked ? languages.ru : languages.ua);
+		setLang(!checked ? 'ru' : 'ua');
 	};
+
+	useEffect(() => {
+		if (localStorage.getItem('pro-lang') === 'ru') {
+			setChecked(true)
+		}
+	})
 
 	return (
 		<span>
