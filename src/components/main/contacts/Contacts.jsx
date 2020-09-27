@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./contacts.scss";
+import {policyConfirm} from "../../../redux/actions";
+import {connect} from "react-redux";
 
-export default class Contacts extends Component {
+class Contacts extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -24,43 +26,46 @@ export default class Contacts extends Component {
 
 	async sendData(e) {
 		e.preventDefault();
-
-		if (this.state.phone.toString().length && this.state.name.length) {
-			await fetch("/3.php", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json;charset=utf-8",
-				},
-				body: JSON.stringify({
-					phone: this.state.phone,
-					name: this.state.name,
-				}),
-			})
-				.then(() => {
-					this.setState({
-						phone: "",
-						name: "",
-						successMess: this.props.lang.thanks,
-					});
+		if (JSON.parse(localStorage.getItem('pro-conf'))) {
+			if (this.state.phone.toString().length && this.state.name.length) {
+				await fetch("/3.php", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json;charset=utf-8",
+					},
+					body: JSON.stringify({
+						phone: this.state.phone,
+						name: this.state.name,
+					}),
 				})
-				.then(() => {
-					setTimeout(() => {
-						this.setState({ successMess: "" });
-					}, 3000);
-				})
-				.catch((err) => console.error("Error:", err));
+					.then(() => {
+						this.setState({
+							phone: "",
+							name: "",
+							successMess: this.props.lang.thanks,
+						});
+					})
+					.then(() => {
+						setTimeout(() => {
+							this.setState({ successMess: "" });
+						}, 3000);
+					})
+					.catch((err) => console.error("Error:", err));
+			} else {
+				this.setState({ warnMess: this.props.lang.warning });
+			}
 		} else {
-			this.setState({ warnMess: this.props.lang.warning });
+			this.props.policyConfirm(true, '')
 		}
 	}
 
 	render() {
 		const message = this.state.warnMess.length ? (
-			<div class="alert alert-danger h6 py-2" role="alert">
+			<div className="alert alert-danger h6 py-2" role="alert">
 				{this.state.warnMess}
 			</div>
 		) : (
-			<div class="alert alert-success h6 py-2" role="alert">
+			<div className="alert alert-success h6 py-2" role="alert">
 				{this.state.successMess}
 			</div>
 		);
@@ -119,3 +124,14 @@ export default class Contacts extends Component {
 		);
 	}
 }
+
+
+const mapStateToProps = (state) => {
+
+}
+
+const mapDispatchToProps = {
+	policyConfirm
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts)

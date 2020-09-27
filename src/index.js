@@ -5,34 +5,38 @@ import './index.css';
 import './fonts/Fonts/Fonts/Roboto-Regular.ttf';
 import App from './components/app/App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import PWAPrompt from 'react-ios-pwa-prompt';
 import InstallPWA from './pwa';
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
 
 const root = document.getElementById("root");
 
 if (root.hasChildNodes()) {
-  ReactDOM.hydrate(
-    // <React.StrictMode>
-    <BrowserRouter >
-      <PWAPrompt promptOnVisit={1} timesToShow={3} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
-      <InstallPWA />
-
-      <App />
-    </BrowserRouter>,
-    // </React.StrictMode>,
-    root);
+    ReactDOM.hydrate(
+        // <React.StrictMode>
+        <BrowserRouter>
+            <PWAPrompt promptOnVisit={1} timesToShow={3} copyClosePrompt="Close" permanentlyHideOnDismiss={false}/>
+            <InstallPWA/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>,
+        // </React.StrictMode>,
+        root);
 } else {
-  ReactDOM.render(
-    // <React.StrictMode>
-    <BrowserRouter>
-      <PWAPrompt promptOnVisit={1} timesToShow={3} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
-      <InstallPWA />
-
-      <App />
-    </BrowserRouter>,
-    // </React.StrictMode>,
-    root);
+    ReactDOM.render(
+        // <React.StrictMode>
+        <BrowserRouter>
+            <PWAPrompt promptOnVisit={1} timesToShow={3} copyClosePrompt="Close" permanentlyHideOnDismiss={false}/>
+            <InstallPWA/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>,
+        // </React.StrictMode>,
+        root);
 }
 
 // If you want your app to work offline and load faster, you can change

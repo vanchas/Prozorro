@@ -53,7 +53,9 @@ export default class Main extends Component {
 				</span>
 
 				<main>
-					<About lang={this.props.lang.main.block_1} />
+					<About
+						lang={this.props.lang.main.block_1}
+					/>
 
 					<div id="about" ref={this.About}>
 						<Features
@@ -63,11 +65,15 @@ export default class Main extends Component {
 					</div>
 
 					<div id="features" ref={this.Features}>
-						<Posibilities lang={this.props.lang.main.block_4} />
+						<Posibilities
+							lang={this.props.lang.main.block_4}
+						/>
 					</div>
 
 					<div id="contacts" ref={this.Contacts}>
-						<Contacts lang={this.props.lang.main.block_5} />
+						<Contacts
+							lang={this.props.lang.main.block_5}
+						/>
 					</div>
 				</main>
 			</div>

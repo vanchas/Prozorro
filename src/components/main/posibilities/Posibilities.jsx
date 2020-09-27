@@ -12,6 +12,8 @@ import $ from "jquery";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import {policyConfirm} from "../../../redux/actions";
+import {connect} from "react-redux";
 
 const OrderForm = (props) => {
 	const [show, setShow] = React.useState(false);
@@ -56,54 +58,55 @@ const OrderForm = (props) => {
 
 	const fetchData = async (e) => {
 		e.preventDefault();
-		// const phoneno = /^\d{12}$/;
-
-		// if (phone.match(phoneno)) {
-		if (
-			phone.toString().length &&
-			name.length &&
-			(preparationOfTenderBid ||
-				validationOfTenderBid ||
-				competitorRejection ||
-				appeal ||
-				advocacy ||
-				bankGuarantee)
-		) {
-			await fetch("/2.php", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json;charset=utf-8",
-				},
-				body: JSON.stringify({
-					preparationOfTenderBid,
-					validationOfTenderBid,
-					competitorRejection,
-					appeal,
-					advocacy,
-					bankGuarantee,
-					phone,
-					name,
-				}),
-			})
-				.then(() => {
-					setWarnMess("");
-					setSuccessMess(
-						props.lang.thanks
-					);
+		if (JSON.parse(localStorage.getItem('pro-conf'))) {
+			if (
+				phone.toString().length &&
+				name.length &&
+				(preparationOfTenderBid ||
+					validationOfTenderBid ||
+					competitorRejection ||
+					appeal ||
+					advocacy ||
+					bankGuarantee)
+			) {
+				await fetch("/2.php", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json;charset=utf-8",
+					},
+					body: JSON.stringify({
+						preparationOfTenderBid,
+						validationOfTenderBid,
+						competitorRejection,
+						appeal,
+						advocacy,
+						bankGuarantee,
+						phone,
+						name,
+					}),
 				})
-				.then(() => {
-					setTimeout(() => {
-						handleClose();
-						setSuccessMess("");
-						setPhone("");
-						setName("");
-					}, 3000);
-				})
-				.catch((err) => console.error("Error:", err));
+					.then(() => {
+						setWarnMess("");
+						setSuccessMess(
+							props.lang.thanks
+						);
+					})
+					.then(() => {
+						setTimeout(() => {
+							handleClose();
+							setSuccessMess("");
+							setPhone("");
+							setName("");
+						}, 3000);
+					})
+					.catch((err) => console.error("Error:", err));
+			} else {
+				setWarnMess(
+					props.lang.warning
+				);
+			}
 		} else {
-			setWarnMess(
-				props.lang.warning
-			);
+			props.policyConfirm(true, '')
 		}
 	};
 
@@ -117,7 +120,7 @@ const OrderForm = (props) => {
 				{props.lang.features_order_btn}
 			</Button>
 
-			<Modal className="mt-5" show={show} onHide={handleClose}>
+			<Modal className="mt-5 p-0" show={show} onHide={handleClose}>
 				<Modal.Header closeButton className="bkg-light-info">
 					{successMess.length ? (
 						<Modal.Title>
@@ -273,7 +276,7 @@ const OrderForm = (props) => {
 	);
 };
 
-export default class Posibilities extends Component {
+class Posibilities extends Component {
 	render() {
 		const text = this.props.lang;
 
@@ -299,7 +302,10 @@ export default class Posibilities extends Component {
 								</p>
 							</div>
 						</div>
-						<OrderForm lang={this.props.lang} />
+						<OrderForm
+							policyConfirm={this.props.policyConfirm}
+							lang={this.props.lang}
+						/>
 					</div>
 					<div
 						className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3"
@@ -316,7 +322,10 @@ export default class Posibilities extends Component {
 								</p>
 							</div>
 						</div>
-						<OrderForm lang={this.props.lang} />
+						<OrderForm
+							policyConfirm={this.props.policyConfirm}
+							lang={this.props.lang}
+						/>
 					</div>
 					<div
 						className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3"
@@ -334,7 +343,10 @@ export default class Posibilities extends Component {
 								</p>
 							</div>
 						</div>
-						<OrderForm lang={this.props.lang} />
+						<OrderForm
+							policyConfirm={this.props.policyConfirm}
+							lang={this.props.lang}
+						/>
 					</div>
 					<div
 						className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3"
@@ -351,7 +363,10 @@ export default class Posibilities extends Component {
 								</p>
 							</div>
 						</div>
-						<OrderForm lang={this.props.lang} />
+						<OrderForm
+							policyConfirm={this.props.policyConfirm}
+							lang={this.props.lang}
+						/>
 					</div>
 					<div
 						className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3"
@@ -368,7 +383,10 @@ export default class Posibilities extends Component {
 								</p>
 							</div>
 						</div>
-						<OrderForm lang={this.props.lang} />
+						<OrderForm
+							policyConfirm={this.props.policyConfirm}
+							lang={this.props.lang}
+						/>
 					</div>
 					<div
 						className="col-lg-4 col-md-6 col-sm-12 m-0 px-2 text-center card-holder py-3"
@@ -383,10 +401,23 @@ export default class Posibilities extends Component {
 								<p className="card-text text-secondary"></p>
 							</div>
 						</div>
-						<OrderForm lang={this.props.lang} />
+						<OrderForm
+							policyConfirm={this.props.policyConfirm}
+							lang={this.props.lang}
+						/>
 					</div>
 				</div>
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+
+}
+
+const mapDispatchToProps = {
+	policyConfirm
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posibilities)

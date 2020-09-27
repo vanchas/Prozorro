@@ -1,0 +1,50 @@
+.Modal {
+  &_root {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    box-shadow: 0 .1rem .5rem #02bfdd;
+    min-width: 20em;
+  }
+
+  &_header {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+      span {
+        user-select: none;
+      }
+    }
+
+    input {
+      margin-right: 0.7em;
+    }
+
+    button:focus {
+      outline: none;
+    }
+  }
+
+  &_closeBtn {
+    background-color: #fff;
+    border-color: #fff;
+    font-weight: 900;
+    color: #333;
+    margin-left: 2em;
+    cursor: pointer;
+    transition: .3s;
+    &:hover {
+      color: #000;
+      transform: scale(1.2);
+    }
+  }
+}

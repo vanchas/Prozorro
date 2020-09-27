@@ -4,8 +4,10 @@ import BigRob from "./image/big-rob.png";
 import DocSign from "./image/doc-sign.png";
 import MolotSign from "./image/molot-sign.png";
 import ScalesSign from "./image/scales-sign.png";
+import {connect} from "react-redux";
+import {policyConfirm} from "../../../redux/actions";
 
-export default class About extends Component {
+class About extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -36,40 +38,44 @@ export default class About extends Component {
 
 	sendData(e) {
 		e.preventDefault();
-		if (
-			this.state.phone.toString().length &&
-			this.state.email.length &&
-			this.state.link.length
-		) {
-			this.setState({ warnMess: "" });
-			fetch("/1.php", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json;charset=utf-8",
-				},
-				body: JSON.stringify({
-					phone: this.state.phone,
-					email: this.state.email,
-					link: this.state.link,
-				}),
-			})
-				.then(() => {
-					this.setState({
-						phone: "",
-						email: "",
-						link: "",
-						successMess: this.props.lang.thanks,
-					});
+		if (JSON.parse(localStorage.getItem('pro-conf'))) {
+			if (
+				this.state.phone.toString().length &&
+				this.state.email.length &&
+				this.state.link.length
+			) {
+				this.setState({ warnMess: "" });
+				fetch("/1.php", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json;charset=utf-8",
+					},
+					body: JSON.stringify({
+						phone: this.state.phone,
+						email: this.state.email,
+						link: this.state.link,
+					}),
 				})
-				.then(() => {
-					setTimeout(() => {
-						this.setState({ successMess: "" });
-					}, 3000);
+					.then(() => {
+						this.setState({
+							phone: "",
+							email: "",
+							link: "",
+							successMess: this.props.lang.thanks,
+						});
+					})
+					.then(() => {
+						setTimeout(() => {
+							this.setState({ successMess: "" });
+						}, 3000);
+					});
+			} else {
+				this.setState({
+					warnMess: this.props.lang.warning,
 				});
+			}
 		} else {
-			this.setState({
-				warnMess: this.props.lang.warning,
-			});
+			 this.props.policyConfirm(true, '')
 		}
 	}
 
@@ -246,3 +252,13 @@ export default class About extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+
+}
+
+const mapDispatchToProps = {
+	policyConfirm
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(About)

@@ -89,6 +89,7 @@ export default class Header extends Component {
 							</li>
 							<li>
 								<span
+									style={{color: '#ff0000'}}
 									className="scrollto list-item"
 									onClick={() => {
 										this.onNavItemClick("features");
