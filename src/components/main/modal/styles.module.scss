@@ -15,22 +15,10 @@
     align-content: center;
     padding-top: 1.5em;
     padding-bottom: 1.5em;
+    border-bottom: 0;
 
-    label {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0;
-      span {
-        user-select: none;
-      }
-    }
-
-    input {
-      margin-right: 0.7em;
-    }
-
-    button:focus {
-      outline: none;
+    span {
+      user-select: none;
     }
   }
 
@@ -42,9 +30,18 @@
     margin-left: 2em;
     cursor: pointer;
     transition: .3s;
+
     &:hover {
       color: #000;
       transform: scale(1.2);
     }
   }
+
+  &_footer {
+    border-top: 0;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+  }
 }
+

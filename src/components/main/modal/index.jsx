@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import {useDispatch} from "react-redux";
 import {policyConfirm} from "../../../redux/actions";
 
-const PersonalDataModal = ({text}) => {
+const PersonalDataModal = ({text, btn}) => {
     // const text = useSelector(state => state.app.modalText)
     const dispatch = useDispatch()
 
@@ -14,8 +14,8 @@ const PersonalDataModal = ({text}) => {
         }, 300)
     }
 
-    const confirmHandler = (e) => {
-        if (e.target.checked) {
+    const confirmHandler = (value) => {
+        if (value) {
             localStorage.setItem('pro-conf', 1)
             setToZero()
         } else {
@@ -27,17 +27,22 @@ const PersonalDataModal = ({text}) => {
     return (
         <Modal.Dialog className={styles.Modal_root}>
             <Modal.Header className={styles.Modal_header}>
-                <label>
-                    <input type="checkbox" onChange={confirmHandler}/>
-                    <span>{text}</span>
-                </label>
+                <span>{text}</span>
                 <span
-                    className={styles.Modal_closeBtn}
-                    onClick={confirmHandler}
+                    className={'font-weight-bold text-secondary ml-4 h4 mb-0'}
+                    onClick={() => confirmHandler(false)}
                 >
                     &#x2715;
                 </span>
             </Modal.Header>
+            <Modal.Footer className={styles.Modal_footer}>
+                <span
+                    className={`btn btn-info`}
+                    onClick={() => confirmHandler(true)}
+                >
+                    {btn}
+                </span>
+            </Modal.Footer>
         </Modal.Dialog>
     );
 }

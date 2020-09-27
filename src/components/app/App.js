@@ -28,7 +28,7 @@ function App() {
 
     return (
         <div className="App">
-            {showModal && <PersonalDataModal text={lang.policy} />}
+            {showModal && <PersonalDataModal btn={lang.policySubmit} text={lang.policy} />}
             <Main
                 lang={lang}
                 setLang={setLangHandler}
