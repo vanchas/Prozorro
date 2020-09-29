@@ -6,7 +6,3 @@ export const store = createStore(
         app: reducer
     })
 )
-
-// if (!JSON.parse(localStorage.getItem('pro-conf'))) {
-//     store.dispatch(policyConfirm(true, ''))
-// }
