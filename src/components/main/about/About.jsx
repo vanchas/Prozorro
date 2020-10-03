@@ -5,7 +5,8 @@ import DocSign from "./image/doc-sign.png";
 import MolotSign from "./image/molot-sign.png";
 import ScalesSign from "./image/scales-sign.png";
 import {connect} from "react-redux";
-import {policyConfirm} from "../../../redux/actions";
+import {policyConfirm, submitRequest} from "../../../redux/actions";
+import {SUBMIT_REQUEST_TYPES} from "../../../constants";
 
 class About extends Component {
     constructor(props) {
@@ -39,7 +40,8 @@ class About extends Component {
     }
 
     sendData(e) {
-        e.preventDefault();
+        if (e) e.preventDefault();
+
         if (
             this.state.phone.toString().length &&
             this.state.email.length &&
@@ -73,12 +75,19 @@ class About extends Component {
                         }, 3000);
                     });
             } else {
-                this.props.policyConfirm(true, '')
+                this.props.policyConfirmAction(SUBMIT_REQUEST_TYPES.ABOUT, '')
             }
         } else {
             this.setState({
                 warnMess: this.props.lang.warning,
             });
+        }
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.submitRequest === SUBMIT_REQUEST_TYPES.ABOUT)  {
+          this.sendData()
+            this.setState({warnMess: ''})
         }
     }
 
@@ -256,12 +265,13 @@ class About extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-
-}
+const mapStateToProps = (state) => ({
+    policyConfirm: state.app.policyConfirm,
+    submitRequest: state.app.submitRequest
+})
 
 const mapDispatchToProps = {
-    policyConfirm
+    policyConfirmAction: policyConfirm,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(About)

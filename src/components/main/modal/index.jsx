@@ -1,11 +1,12 @@
 import React from 'react';
 import {Modal} from "react-bootstrap";
 import styles from './styles.module.scss';
-import {useDispatch} from "react-redux";
-import {policyConfirm} from "../../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {policyConfirm, submitRequest} from "../../../redux/actions";
+import {SUBMIT_REQUEST_TYPES} from "../../../constants";
 
 const PersonalDataModal = ({text, btn}) => {
-    // const text = useSelector(state => state.app.modalText)
+    const form = useSelector(state => state.app.policyConfirm)
     const dispatch = useDispatch()
 
     const setToZero = () => {
@@ -14,10 +15,17 @@ const PersonalDataModal = ({text, btn}) => {
         }, 300)
     }
 
-    const confirmHandler = (value) => {
+    const confirmHandler = async (value) => {
         if (value) {
-            localStorage.setItem('pro-conf', 1)
-            setToZero()
+            await localStorage.setItem('pro-conf', 1)
+            await setToZero()
+            if (form === SUBMIT_REQUEST_TYPES.ABOUT) {
+                dispatch(submitRequest(SUBMIT_REQUEST_TYPES.ABOUT))
+            } else if (form === SUBMIT_REQUEST_TYPES.CONTACTS) {
+                dispatch(submitRequest(SUBMIT_REQUEST_TYPES.CONTACTS))
+            } else if (form === SUBMIT_REQUEST_TYPES.POSSIBILITIES) {
+                dispatch(submitRequest(SUBMIT_REQUEST_TYPES.POSSIBILITIES))
+            }
         } else {
             localStorage.setItem('pro-conf', 0)
             setToZero()

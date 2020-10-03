@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./contacts.scss";
 import {policyConfirm} from "../../../redux/actions";
 import {connect} from "react-redux";
+import {SUBMIT_REQUEST_TYPES} from "../../../constants";
 
 class Contacts extends Component {
     constructor(props) {
@@ -26,7 +27,8 @@ class Contacts extends Component {
     }
 
     async sendData(e) {
-        e.preventDefault();
+        if (e) e.preventDefault();
+
         if (this.state.phone.toString().length && this.state.name.length) {
             if (JSON.parse(localStorage.getItem('pro-conf'))) {
 
@@ -54,10 +56,17 @@ class Contacts extends Component {
                     })
                     .catch((err) => console.error("Error:", err));
             } else {
-                this.props.policyConfirm(true, '')
+                this.props.policyConfirmAction(SUBMIT_REQUEST_TYPES.CONTACTS, '')
             }
         } else {
             this.setState({warnMess: this.props.lang.warning});
+        }
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.submitRequest === SUBMIT_REQUEST_TYPES.CONTACTS)  {
+            void this.sendData()
+            this.setState({warnMess: ''})
         }
     }
 
@@ -128,12 +137,13 @@ class Contacts extends Component {
 }
 
 
-const mapStateToProps = (state) => {
-
-}
+const mapStateToProps = (state) => ({
+    policyConfirm: state.app.policyConfirm,
+    submitRequest: state.app.submitRequest
+})
 
 const mapDispatchToProps = {
-    policyConfirm
+    policyConfirmAction: policyConfirm,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts)

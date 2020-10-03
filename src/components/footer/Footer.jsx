@@ -12,15 +12,15 @@ export default class Footer extends Component {
 					style={{ maxWidth: "1200px" }}
 				>
 					<div className="col-lg-3 col-md-12">
-						<a href="tel:+380667816367" className=" text-white">
+						<a href="tel:+380984900550" className=" text-white">
 							<img src={Phone} className="px-2" alt="phone" />
-							+38 (066) 781-63-67
+							+38 (098) 490-05-50
 						</a>
 					</div>
 					<div className="col-lg-3 col-md-12">
-						<a href="mailto:tenderbot@gmail.com" className=" text-white">
+						<a href="mailto:info@tenderbot.com.ua" className=" text-white">
 							<img src={Mail} className="px-2" alt="e-mail" />
-							tenderbot@gmail.com
+							info@tenderbot.com.ua
 						</a>
 					</div>
 					<div className="col-lg-6 col-md-12">

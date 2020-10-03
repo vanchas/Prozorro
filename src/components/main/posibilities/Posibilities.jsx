@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component, useCallback, useEffect, useState} from "react";
 import "./posibilities.scss";
 import img1 from "./image/1.png";
 import img2 from "./image/2.png";
@@ -14,6 +14,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import {policyConfirm} from "../../../redux/actions";
 import {connect} from "react-redux";
+import {SUBMIT_REQUEST_TYPES} from "../../../constants";
 
 const OrderForm = (props) => {
     const [show, setShow] = React.useState(false);
@@ -56,8 +57,9 @@ const OrderForm = (props) => {
         setShow(true);
     };
 
-    const fetchData = async (e) => {
-        e.preventDefault();
+    const fetchData = useCallback(async (e) => {
+        if (e) e.preventDefault();
+
         if (
             phone.toString().length &&
             name.length &&
@@ -102,14 +104,21 @@ const OrderForm = (props) => {
                     })
                     .catch((err) => console.error("Error:", err));
             } else {
-                props.policyConfirm(true, '')
+                props.policyConfirmAction(SUBMIT_REQUEST_TYPES.POSSIBILITIES, '')
             }
         } else {
             setWarnMess(
                 props.lang.warning
             );
         }
-    };
+    });
+
+    useEffect(() => {
+        if (props.submitRequest === SUBMIT_REQUEST_TYPES.POSSIBILITIES)  {
+            void fetchData()
+            setWarnMess('')
+        }
+    }, [props.submitRequest, fetchData])
 
     return (
         <>
@@ -306,6 +315,8 @@ class Posibilities extends Component {
                         <OrderForm
                             policyConfirm={this.props.policyConfirm}
                             lang={this.props.lang}
+                            policyConfirmAction={this.props.policyConfirmAction}
+                            submitRequest={this.props.submitRequest}
                         />
                     </div>
                     <div
@@ -326,6 +337,8 @@ class Posibilities extends Component {
                         <OrderForm
                             policyConfirm={this.props.policyConfirm}
                             lang={this.props.lang}
+                            policyConfirmAction={this.props.policyConfirmAction}
+                            submitRequest={this.props.submitRequest}
                         />
                     </div>
                     <div
@@ -347,6 +360,8 @@ class Posibilities extends Component {
                         <OrderForm
                             policyConfirm={this.props.policyConfirm}
                             lang={this.props.lang}
+                            policyConfirmAction={this.props.policyConfirmAction}
+                            submitRequest={this.props.submitRequest}
                         />
                     </div>
                     <div
@@ -367,6 +382,8 @@ class Posibilities extends Component {
                         <OrderForm
                             policyConfirm={this.props.policyConfirm}
                             lang={this.props.lang}
+                            policyConfirmAction={this.props.policyConfirmAction}
+                            submitRequest={this.props.submitRequest}
                         />
                     </div>
                     <div
@@ -387,6 +404,8 @@ class Posibilities extends Component {
                         <OrderForm
                             policyConfirm={this.props.policyConfirm}
                             lang={this.props.lang}
+                            policyConfirmAction={this.props.policyConfirmAction}
+                            submitRequest={this.props.submitRequest}
                         />
                     </div>
                     <div
@@ -405,6 +424,8 @@ class Posibilities extends Component {
                         <OrderForm
                             policyConfirm={this.props.policyConfirm}
                             lang={this.props.lang}
+                            policyConfirmAction={this.props.policyConfirmAction}
+                            submitRequest={this.props.submitRequest}
                         />
                     </div>
                 </div>
@@ -413,12 +434,13 @@ class Posibilities extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-
-}
+const mapStateToProps = (state) => ({
+    policyConfirm: state.app.policyConfirm,
+    submitRequest: state.app.submitRequest
+})
 
 const mapDispatchToProps = {
-    policyConfirm
+    policyConfirmAction: policyConfirm,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posibilities)
